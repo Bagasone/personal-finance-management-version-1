@@ -29,7 +29,7 @@ const navbar = () => {
                 absolute flex flex-col gap-3 -left-3 -bottom-1 z-20 min-w-fit cursor-pointer
                 md:-left-3.5 xl:-left-4 
                 md:-bottom-1.5 xl:-bottom-2">
-                ${icon('ri-moon-clear-fill')}
+                ${icon('ri-moon-clear-fill', 'xs')}
             </div>
         </div>
     </nav>

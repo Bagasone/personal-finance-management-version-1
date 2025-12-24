@@ -2,7 +2,7 @@
 import { icon } from '../components';
 
 // Constants
-import { incomeIcons, expenseIcons } from '../constants/index.js';
+import { icons } from '../constants/index.js';
 
 const lists = (data, type) => {
   return `
@@ -18,7 +18,7 @@ const lists = (data, type) => {
 `;
 };
 
-const list = (data, type) => {
+const list = ({ desc, category, date, salary, price, qty }) => {
   return `
     <li class="
       min-w-full min-h-15 py-1.5 px-3 rounded-xl overflow-hidden bg-gray-200
@@ -26,67 +26,48 @@ const list = (data, type) => {
       transition-all duration-300 ease-in-out
       sm:gap-3.5 md:gap-4 lg:gap-4.5 xl:gap-5 2xl:gap-5.5
       dark:bg-gray-800">
-      ${type === 'expense' ? expenseList(data) : incomeList(data)}
+      <div class="col-span-2 sm:col-span-1">
+      ${icon(icons[category], 'xs')}
+      </div>
+      <div class="flex flex-col col-span-6 sm:col-span-7">
+        <h3 class="
+          max-w-[10ch] 
+          text-ellipsis overflow-hidden text-nowrap font-semibold
+          md:max-w-[15ch] lg:max-w-[20ch] xl:max-w-[25ch]
+          text-base md:text-lg lg:text-xl 2xl:text-2xl">
+          ${desc}
+        </h3>
+        <p class="ml-2 text-[.6rem] lg:text-[.8rem]">${date}</p>
+      </div>
+      <div class="col-span-4">
+        ${salary ? incomeList(salary) : expenseList(price, qty)}
+      </div>
     </li>
 `;
 };
 
-const expenseList = ({ desc, price, qty, category, date }) => {
-  return `
-    <div class="col-span-2 sm:col-span-1">
-        ${icon(expenseIcons[category])}
-    </div>
-    <div class="flex flex-col col-span-6 sm:col-span-7">
-      <h3 class="
-        max-w-[10ch] 
-        text-ellipsis overflow-hidden text-nowrap font-semibold
-        md:max-w-[15ch] lg:max-w-[20ch] xl:max-w-[25ch]
-        text-base md:text-lg lg:text-xl 2xl:text-2xl">
-        ${desc}
-      </h3>
-      <p class="ml-2 text-[.6rem] lg:text-[.8rem] 2xl:text-[1rem]">${date}</p>
-    </div>
-    <div class="col-span-4">
-      <h3 class="
-        max-w-[10ch] text-ellipsis overflow-hidden text-nowrap text-rose-600
-        font-medium text-sm
-        lg:font-semibold 
-        md:max-w-[15ch] lg:max-w-[20ch] xl:max-w-[25ch]
-        md:text-base lg:text-lg xl:text-xl 2xl:text-2xl">
-        Rp ${price * qty}
-      </h3>
-      <p class="ml-2 text-[.6rem] lg:text-[.8rem] 2xl:text-[1rem]">
-        ${qty} x ${price}
-      </p>
-    </div>
+const expenseList = (price, qty) =>
+  `<h3 class="
+    max-w-[10ch] text-ellipsis overflow-hidden text-nowrap text-rose-600
+    font-medium text-sm
+    lg:font-semibold 
+    md:max-w-[15ch] lg:max-w-[20ch] xl:max-w-[25ch]
+    md:text-base lg:text-lg xl:text-xl 2xl:text-2xl">
+    Rp ${price * qty}
+  </h3>
+  <p class="ml-2 text-[.6rem] lg:text-[.8rem] 2xl:text-[1rem]">
+    ${qty} x ${price}
+  </p>
 `;
-};
-const incomeList = ({ desc, salary, category, date }) => {
-  return `
-    <div class="col-span-2 sm:col-span-1">
-      ${icon(incomeIcons[category])}
-    </div>
-    <div class="flex flex-col col-span-6 sm:col-span-7">
-      <h3 class="
-        max-w-[10ch] 
-        text-ellipsis overflow-hidden text-nowrap font-semibold
-        md:max-w-[15ch] lg:max-w-[20ch] xl:max-w-[25ch]
-        text-base md:text-lg lg:text-xl 2xl:text-2xl">
-        ${desc}
-      </h3>
-      <p class="ml-2 text-[.6rem] lg:text-[.8rem]">${date}</p>
-    </div>
-    <div class="col-span-4">
-      <h3 class="
-        max-w-[10ch] text-ellipsis overflow-hidden text-nowrap text-emerald-500
-        font-medium text-sm
-        lg:font-semibold 
-        md:max-w-[15ch] lg:max-w-[20ch] xl:max-w-[25ch]
-        md:text-base lg:text-lg xl:text-xl 2xl:text-2xl">
-        Rp ${salary}
-      </h3>
-    </div>
-`;
-};
 
+const incomeList = (salary) =>
+  `<h3 class="
+  max-w-[10ch] text-ellipsis overflow-hidden text-nowrap text-emerald-500
+  font-medium text-sm
+  lg:font-semibold 
+  md:max-w-[15ch] lg:max-w-[20ch] xl:max-w-[25ch]
+  md:text-base lg:text-lg xl:text-xl 2xl:text-2xl">
+  Rp ${salary}
+</h3>   
+`;
 export default lists;
