@@ -6,6 +6,12 @@ const links = [
   { ref: '', label: 'Sign Out', iconClass: 'ri-user-received-2-fill' },
 ];
 
+// Social media link
+const socmed = {
+  ref: 'https://www.instagram.com/bagasaputra666/',
+  label: 'Bagas Saputra',
+};
+
 // Categories
 const expenseCategories = [
   'food',
@@ -82,4 +88,4 @@ const incomeForm = [
   },
 ];
 
-export { links, expenseIcons, incomeIcons, expenseForm, incomeForm };
+export { links, expenseIcons, incomeIcons, expenseForm, incomeForm, socmed };

@@ -1,5 +1,5 @@
 // Components
-import icon from './icon.js';
+import { icon } from '../components';
 
 // Constants
 import { incomeIcons, expenseIcons } from '../constants/index.js';

@@ -1,8 +1,7 @@
 // Components
-import icon from './icon.js';
-import text from './text.js';
+import { text, icon } from '../components';
 
-const link = (ref, label, iconClass) => {
+const link = ({ ref, label, iconClass }) => {
   if (iconClass) {
     return `
       <a href="${ref}" class="

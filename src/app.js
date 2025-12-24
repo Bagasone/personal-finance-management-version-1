@@ -13,6 +13,9 @@ import { notFoundPage, dashboardPage, expensePage, incomePage } from './pages';
 // Components
 import { navbar, sidebar, text, link } from './components';
 
+// Constants
+import { socmed } from './constants';
+
 // Routing pages
 const routes = {
   '/': dashboardPage,
@@ -52,12 +55,7 @@ app.innerHTML = `
     min-w-full pt-5 text-center
     max-md:pb-16
     md:pl-22 lg:pl-24 xl:pl-26 2xl:pl-28">
-    ${text(
-      `© Create by ${link(
-        'https://www.instagram.com/bagasaputra666/',
-        'Bagas Saputra'
-      )} with full of 💖 - 2025`
-    )}
+    ${text(`© Create by ${link(socmed)} with full of 💖 - 2025`)}
   </footer>
 </div>
 `;

@@ -1,5 +1,8 @@
 // Components
-import link from './link.js';
+import { link } from '../components';
+
+// Constants
+import { links } from '../constants';
 
 const sidebar = () => {
   return `
@@ -12,10 +15,7 @@ const sidebar = () => {
         max-md:min-w-full md:max-h-125 2xl:max-h-187.5
         md:py-0 md:px-2
         dark:bg-gray-900">
-        ${link('/', 'Dashboard', 'ri-pie-chart-2-fill')}
-        ${link('/expense', 'Expense', 'ri-receipt-fill')}
-        ${link('/income', 'Income', 'ri-cash-fill')}
-        ${link('', 'Sign Out', 'ri-user-received-2-fill')}
+        ${links.map((item) => link(item)).join('')}
     </aside>
 `;
 };

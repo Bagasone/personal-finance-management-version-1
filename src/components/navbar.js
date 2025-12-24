@@ -1,5 +1,5 @@
 // Components
-import icon from './icon.js';
+import { icon } from '../components';
 
 // Data
 import { user } from '../data/data.js';
