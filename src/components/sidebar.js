@@ -1,0 +1,23 @@
+// Components
+import link from './link.js';
+
+const sidebar = () => {
+  return `
+    <aside class="
+        fixed bottom-0 left-0 px-6 py-5
+        flex justify-around md:flex-col bg-gray-100
+        transition-all duration-300 ease-in-out
+        md:left-21 lg:left-23 xl:left-25 2xl:left-27
+        md:top-24 lg:top-26 xl:top-28 2xl:top-40
+        max-md:min-w-full md:max-h-125 2xl:max-h-187.5
+        md:py-0 md:px-2
+        dark:bg-gray-900">
+        ${link('/', 'Dashboard', 'ri-pie-chart-2-fill')}
+        ${link('/expense', 'Expense', 'ri-receipt-fill')}
+        ${link('/income', 'Income', 'ri-cash-fill')}
+        ${link('', 'Sign Out', 'ri-user-received-2-fill')}
+    </aside>
+`;
+};
+
+export default sidebar;

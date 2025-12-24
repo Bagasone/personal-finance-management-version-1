@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+@import 'tailwindcss';
+
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+@layer base {
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+}
+
+@layer components {
+
+    .frame {
+        @apply bg-gray-100 shadow-gray-800 outline-gray-800 rounded-xl dark:bg-gray-900 dark:shadow-gray-300 dark:outline-gray-300;
+    }
+
+    .frame-xs {
+        @apply shadow-[2px_2px_0px_0px] outline-2 lg:shadow-[5px_5px_0px_0px] 2xl:shadow-[7px_7px_0px_0px] 2xl:outline-3;
+    }
+
+    .frame-sm {
+        @apply shadow-[3px_3px_0px_0px] outline-2 lg:shadow-[5px_5px_0px_0px] 2xl:shadow-[7px_7px_0px_0px] 2xl:outline-3;
+    }
+
+    .frame-md {
+        @apply rounded-xl shadow-[4px_4px_0px_0px] outline-2 lg:shadow-[6px_6px_0px_0px] 2xl:shadow-[8px_8px_0px_0px] 2xl:outline-3;
+    }
+
+    .frame-lg {
+        @apply rounded-xl shadow-[5px_5px_0px_0px] outline-2 lg:shadow-[7px_7px_0px_0px] 2xl:shadow-[9px_9px_0px_0px] 2xl:outline-3;
+    }
+
+    .frame-xl {
+        @apply rounded-xl shadow-[6px_6px_0px_0px] outline-2 lg:shadow-[8px_8px_0px_0px] 2xl:shadow-[10px_10px_0px_0px] 2xl:outline-3;
+    }
+}
+
+@layer utilities {
+
+    .title {
+        @apply font-bold text-2xl sm:text-3xl md:text-4xl 2xl:text-5xl tracking-[-1px];
+    }
+
+    .sub-title {
+        @apply font-bold text-lg sm:text-xl md:text-2xl 2xl:text-3xl tracking-[-1px];
+    }
+
+    .active>* {
+        @apply shadow-violet-800 text-violet-800 outline-violet-800 dark:text-amber-400 dark:shadow-amber-400 dark:outline-amber-400;
+    }
+}
