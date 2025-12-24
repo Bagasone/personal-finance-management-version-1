@@ -63,17 +63,17 @@ app.innerHTML = `
 // Initial page
 window.addEventListener('load', () => {
   renderPage(routes, location.pathname);
-  toggleActive(document.querySelector('.link'));
-  toggleTheme(document.querySelector('#toggle i'));
+  toggleActive(location.pathname);
+  toggleTheme();
 });
 
 // Navigation between page
 document.querySelectorAll('aside .link').forEach((e) => {
   e.addEventListener('click', (event) => {
+    const path = e.getAttribute('href');
     event.preventDefault();
 
-    const path = e.getAttribute('href');
-    toggleActive(e);
+    toggleActive(path);
     renderPage(routes, path);
   });
 });
@@ -84,6 +84,6 @@ window.addEventListener('popstate', () => {
 });
 
 // Toggle theme
-document.querySelector('#toggle').addEventListener('click', function () {
-  toggleTheme(document.querySelector('#toggle i'));
-});
+document
+  .querySelector('#toggle')
+  .addEventListener('click', () => toggleTheme());

@@ -1,28 +1,29 @@
-const toggleTheme = (el) => {
+const toggleTheme = () => {
   let isDark = document.documentElement.dataset.theme;
+  const iconTheme = document.querySelector('#toggle i');
   if (isDark !== 'dark') {
     document.documentElement.dataset.theme = 'dark';
-    el.classList.remove('ri-moon-clear-fill');
-    el.classList.add('ri-sun-fill');
+    iconTheme.classList.remove('ri-moon-clear-fill');
+    iconTheme.classList.add('ri-sun-fill');
 
-    el.classList.remove('text-violet-800');
-    el.classList.add('text-amber-400');
+    iconTheme.classList.remove('text-violet-800');
+    iconTheme.classList.add('text-amber-400');
   } else {
     document.documentElement.dataset.theme = 'light';
-    el.classList.add('ri-moon-clear-fill');
-    el.classList.remove('ri-sun-fill');
+    iconTheme.classList.add('ri-moon-clear-fill');
+    iconTheme.classList.remove('ri-sun-fill');
 
-    el.classList.add('text-violet-800');
-    el.classList.remove('text-amber-400');
+    iconTheme.classList.add('text-violet-800');
+    iconTheme.classList.remove('text-amber-400');
   }
 };
 
-const toggleActive = (el) => {
+const toggleActive = (path) => {
   document.querySelectorAll('.link').forEach((e) => {
-    e.classList.remove('active');
+    e.getAttribute('href') === path
+      ? e.classList.add('active')
+      : e.classList.remove('active');
   });
-
-  el.classList.add('active');
 };
 
 export { toggleTheme, toggleActive };
