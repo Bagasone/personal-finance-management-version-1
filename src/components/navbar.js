@@ -1,7 +1,8 @@
 // Components
 import icon from './icon.js';
 
-import profile1 from '../assets/images/profile1.jpg';
+// Data
+import { user } from '../data/data.js';
 
 const navbar = () => {
   return `
@@ -16,11 +17,11 @@ const navbar = () => {
                 md:text-xl lg:text-xl xl:text-2xl 2xl:text-3xl">
                 Welcome,
             </span>
-            Bagas Saputra!
+            ${user.name}!
         </h1>
         <div class="
             relative">
-            <img src=${profile1} class="
+            <img src=${user.profileImg} class="
                 w-15.5 h-15.5 aspect-square object-cover object-center frame-lg
                 sm:w-16 md:w-16.5 lg:w-17 xl:w-17.5 2xl:w-24
                 sm:h-16 md:h-16.5 lg:h-17 xl:h-17.5 2xl:h-24" />

@@ -5,20 +5,13 @@ import './index.css';
 import 'remixicon/fonts/remixicon.css';
 
 // Helper
-import renderPage from './helper/renderPage.js';
-import { toggleActive, toggleTheme } from './helper/toggle.js';
+import { renderPage, toggleActive, toggleTheme } from './helper';
 
 // Pages
-import dashboardPage from './pages/dashboard.js';
-import expensePage from './pages/expense.js';
-import incomePage from './pages/income.js';
-import notFoundPage from './pages/404.js';
+import { notFoundPage, dashboardPage, expensePage, incomePage } from './pages';
 
 // Components
-import navbar from './components/navbar.js';
-import sidebar from './components/sidebar.js';
-import text from './components/text.js';
-import link from './components/link.js';
+import { navbar, sidebar, text, link } from './components';
 
 // Routing pages
 const routes = {

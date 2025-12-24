@@ -1,4 +1,4 @@
-const select = (label, id, categories) => {
+const select = ({ label, id, categories }) => {
   return `
     <div class="
         min-w-full flex flex-col gap-1 col-span-2 sm:col-span-1">

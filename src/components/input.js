@@ -1,7 +1,8 @@
-const input = (label, type, id, placeholder, cls = '') => {
+const input = ({ label, type, id, placeholder }) => {
   return `
     <div class="
-      min-w-full flex flex-col gap-1 col-span-2 sm:col-span-1 ${cls}">
+      min-w-full flex flex-col gap-1 col-span-2 sm:col-span-1 
+      ${label === 'Salary' && 'sm:col-span-2'}">
       <label for="${id}" class="text-base lg:text-lg xl:text-xl 2xl:text-2xl font-semibold">
         ${label}:
       </label>

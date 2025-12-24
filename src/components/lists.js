@@ -1,8 +1,8 @@
-// Helper
-import setIcon from '../helper/setIcon.js';
-
 // Components
 import icon from './icon.js';
+
+// Constants
+import { incomeIcons, expenseIcons } from '../constants/index.js';
 
 const lists = (data, type) => {
   return `
@@ -34,7 +34,7 @@ const list = (data, type) => {
 const expenseList = ({ desc, price, qty, category, date }) => {
   return `
     <div class="col-span-2 sm:col-span-1">
-        ${icon(setIcon(category, 'expense'))}
+        ${icon(expenseIcons[category])}
     </div>
     <div class="flex flex-col col-span-6 sm:col-span-7">
       <h3 class="
@@ -64,7 +64,7 @@ const expenseList = ({ desc, price, qty, category, date }) => {
 const incomeList = ({ desc, salary, category, date }) => {
   return `
     <div class="col-span-2 sm:col-span-1">
-      ${icon(setIcon(category, 'income'))}
+      ${icon(incomeIcons[category])}
     </div>
     <div class="flex flex-col col-span-6 sm:col-span-7">
       <h3 class="
