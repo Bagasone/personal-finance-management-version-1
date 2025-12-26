@@ -1,5 +1,5 @@
 // Styles
-import './index.css';
+import './app.css';
 
 // Icons
 import 'remixicon/fonts/remixicon.css';
@@ -35,16 +35,17 @@ app.innerHTML = `
   transition-all duration-300 ease-in-out
   sm:px-18 md:px-20 lg:px-22 xl:px-24 2xl:p-26
   dark:bg-gray-900 dark:text-gray-200">
-  <header class="min-w-full">
+  <header class="relative z-10 min-w-full">
     ${navbar()}
   </header>
   <main class="
     min-w-full grid grid-cols-12 gap-5 pt-12 
     sm:pt-14 md:pt-18 lg:pt-20 xl:pt-22 2xl:pt-12">
-    <div class="md:col-span-2">
+    <div class="relative z-10 md:col-span-2">
       ${sidebar()}
     </div>
     <div id="content" class="
+      relative z-0
       col-span-12 md:col-span-10
       min-w-full grid grid-cols-12 gap-6
       md:gap-x-6.5 lg:gap-x-7 xl:gap-x-7.5 2xl:gap-x-8
