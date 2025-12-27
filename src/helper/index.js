@@ -1,5 +1,13 @@
-import renderPage from './renderPage';
 import { sortByHighest, sortByLowest } from './sort';
 import { toggleActive, toggleTheme } from './toggle';
+import { addExpense } from './expense';
+import routePage from './routePage';
 
-export { renderPage, sortByHighest, sortByLowest, toggleActive, toggleTheme };
+export {
+  sortByHighest,
+  sortByLowest,
+  toggleActive,
+  toggleTheme,
+  addExpense,
+  routePage,
+};

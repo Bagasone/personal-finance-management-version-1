@@ -1,5 +1,5 @@
 // Components
-import { icon } from '../components';
+import { icon, text } from '../components';
 
 // Constants
 import { icons } from '../constants/index.js';
@@ -13,12 +13,16 @@ const lists = (data, type) => {
       sm:pt-3.5 md:pt-4 lg:pt-4.5 xl:pt-5 2xl:pt-5.5
       sm:pb-4.5 md:pb-5 lg:pb-5.5 xl:pb-6 2xl:pb-6.5
       sm:px-5.5 md:px-6 lg:px-6.5 xl:px-7 2xl:px-7.5">
-      ${data.map((item) => list(item, type)).join('')}
+      ${
+        data.length === 0
+          ? text(`No ${type} today`, 'capitalize font-bold')
+          : data.map((item) => list(item, type)).join('')
+      }
     </ul>
 `;
 };
 
-const list = ({ desc, category, date, salary, price, qty }) => {
+const list = ({ desc, ctg, date, salary, price, qty }) => {
   return `
     <li class="
       min-w-full min-h-15 py-1.5 px-3 rounded-xl overflow-hidden bg-gray-200
@@ -27,7 +31,7 @@ const list = ({ desc, category, date, salary, price, qty }) => {
       sm:gap-3.5 md:gap-4 lg:gap-4.5 xl:gap-5 2xl:gap-5.5
       dark:bg-gray-800">
       <div class="col-span-2 sm:col-span-1">
-      ${icon(icons[category], 'xs')}
+      ${icon(icons[ctg], 'xs')}
       </div>
       <div class="flex flex-col col-span-6 sm:col-span-7">
         <h3 class="

@@ -2,12 +2,15 @@
 import { status, form, lists } from '../components';
 
 // Expenses data
-import { expenses, expense } from '../data/data.js';
+import { expense } from '../data/data.js';
+import { getDailyExpense } from '../data/expenseStorage.js';
 
 // Constants
 import { expenseForm } from '../constants';
 
 const expensePage = () => {
+  const dailyExpense = getDailyExpense();
+
   return `
     <section class="col-span-12">
       ${status(expense, 'md')}
@@ -18,7 +21,7 @@ const expensePage = () => {
     </section>
     <section class="col-span-12 flex flex-col gap-2.5 2xl:gap-3">
       <h2 class="sub-title">List Expenses</h2>
-      ${lists(expenses, 'expense')}
+      ${lists(dailyExpense, 'expense')}
     </section>
 `;
 };

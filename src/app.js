@@ -1,19 +1,9 @@
-// Styles
 import './app.css';
-
-// Icons
 import 'remixicon/fonts/remixicon.css';
 
-// Helper
-import { renderPage, toggleActive, toggleTheme } from './helper';
-
-// Pages
-import { notFoundPage, dashboardPage, expensePage, incomePage } from './pages';
-
-// Components
+import { dashboardPage, expensePage, incomePage, notFoundPage } from './pages';
+import { toggleActive, toggleTheme, addExpense, routePage } from './helper';
 import { navbar, sidebar, text, link } from './components';
-
-// Constants
 import { socmed } from './constants';
 
 // Routing pages
@@ -26,7 +16,6 @@ const routes = {
 
 // Root element
 const app = document.getElementById('app');
-
 app.innerHTML = `
 <div class="
   max-w-screen min-h-screen py-6 px-6
@@ -61,30 +50,39 @@ app.innerHTML = `
 </div>
 `;
 
+// Content element
+const content = document.querySelector('#content');
+
+// Render
+const render = (path) => {
+  routePage(content, routes, path);
+  toggleActive(path);
+};
+
 // Initial page
 window.addEventListener('load', () => {
-  renderPage(routes, location.pathname);
-  toggleActive(location.pathname);
+  render(location.pathname);
   toggleTheme();
 });
 
 // Navigation between page
-document.querySelectorAll('aside .link').forEach((e) => {
+document.querySelectorAll('aside .link').forEach((e) =>
   e.addEventListener('click', (event) => {
-    const path = e.getAttribute('href');
     event.preventDefault();
 
-    toggleActive(path);
-    renderPage(routes, path);
-  });
-});
+    const path = e.getAttribute('href');
+    return render(path);
+  })
+);
 
 // Save the history of the page
 window.addEventListener('popstate', () => {
   document.getElementById('content').innerHTML = routes[location.pathname]();
 });
 
-// Toggle theme
-document
-  .querySelector('#toggle')
-  .addEventListener('click', () => toggleTheme());
+// Adding data expense or income
+document.querySelector('#content').addEventListener('click', (e) => {
+  if (e.target.closest('.btn-add')) {
+    if (location.pathname === '/expense') addExpense();
+  }
+});

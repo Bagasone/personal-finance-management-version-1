@@ -2,7 +2,6 @@
 import { input, select, button } from '../components';
 
 const form = (formData) => {
-  // console.log(formData);
   return `
     <form class="
         min-w-full pt-3 pb-5 px-5 frame frame-lg
@@ -15,7 +14,7 @@ const form = (formData) => {
         ${formData
           .map((data) => (data?.type ? input(data) : select(data)))
           .join('')}
-        ${button('Add', 'bi bi-plus-circle-fill', 'mt-3 col-span-2')}
+        ${button('Add', 'bi bi-plus-circle-fill', 'mt-3 col-span-2 btn-add')}
     </form>
 `;
 };

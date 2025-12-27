@@ -83,4 +83,8 @@
     .active>* {
         @apply shadow-violet-800 text-violet-800 outline-violet-800 dark:text-amber-400 dark:shadow-amber-400 dark:outline-amber-400;
     }
+
+    .invalid {
+        @apply text-rose-700 outline-rose-700 dark:text-rose-500 dark:outline-rose-500;
+    }
 }

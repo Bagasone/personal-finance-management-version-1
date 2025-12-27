@@ -4,21 +4,21 @@ import profile from '../assets/images/profile.jpg';
 const expenses = [
   {
     desc: 'Coffee',
-    category: 'food',
+    ctg: 'food',
     price: 20000,
     qty: 3,
     date: Date.now(),
   },
   {
     desc: 'Taxi',
-    category: 'transport',
+    ctg: 'transport',
     price: 50000,
     qty: 1,
     date: Date.now(),
   },
   {
     desc: 'Computer',
-    category: 'other',
+    ctg: 'other',
     price: 20000000,
     qty: 1,
     date: Date.now(),
@@ -29,19 +29,19 @@ const expenses = [
 const incomes = [
   {
     desc: 'Software Engineer',
-    category: 'fulltime',
+    ctg: 'fulltime',
     salary: 20000000,
     date: Date.now(),
   },
   {
     desc: 'Create Profile Company Web',
-    category: 'freelance',
+    ctg: 'freelance',
     salary: 500000,
     date: Date.now(),
   },
   {
     desc: 'Personal Finance Management',
-    category: 'profit',
+    ctg: 'profit',
     salary: 5000000,
     date: Date.now(),
   },

@@ -47,7 +47,7 @@ const expenseForm = [
   },
   {
     label: 'Category',
-    id: 'category',
+    id: 'ctg',
     categories: expenseCategories,
   },
   {
@@ -73,7 +73,7 @@ const incomeForm = [
   },
   {
     label: 'Category',
-    id: 'category',
+    id: 'ctg',
     categories: incomeCategories,
   },
   {
