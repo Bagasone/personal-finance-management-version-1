@@ -1,30 +1,5 @@
 import profile from '../assets/images/profile.jpg';
 
-// Expenses data
-const expenses = [
-  {
-    desc: 'Coffee',
-    ctg: 'food',
-    price: 20000,
-    qty: 3,
-    date: Date.now(),
-  },
-  {
-    desc: 'Taxi',
-    ctg: 'transport',
-    price: 50000,
-    qty: 1,
-    date: Date.now(),
-  },
-  {
-    desc: 'Computer',
-    ctg: 'other',
-    price: 20000000,
-    qty: 1,
-    date: Date.now(),
-  },
-];
-
 // Incomes data
 const incomes = [
   {
@@ -47,31 +22,10 @@ const incomes = [
   },
 ];
 
-// Balance data
-const balance = {
-  label: 'Current Balance',
-  value: 'Rp 20.000.000',
-  iconClass: 'ri-wallet-3-fill',
-};
-
-// Expense data
-const expense = {
-  label: 'Current Expense',
-  value: 'Rp 500.000',
-  iconClass: 'ri-file-paper-2-fill',
-};
-
-// Incomes data
-const income = {
-  label: 'Current Income',
-  value: 'Rp 20.500.000',
-  iconClass: 'ri-cash-fill',
-};
-
 // User
 const user = {
   name: 'Bagas Saputra',
   profileImg: profile,
 };
 
-export { expenses, incomes, user, balance, expense, income };
+export { incomes, user };

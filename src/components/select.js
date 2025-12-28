@@ -26,8 +26,10 @@ const select = ({ label, id, categories }) => {
 const option = (ctg) => {
   return `
     <option value="${ctg}" class="
+        text-gray-900 bg-gray-100
         capitalize text-sm px-3 py-1
         lg:text-base xl:text-lg 2xl:text-xl
+        dark:bg-gray-900 dark:text-gray-200
         md:py-1.5 lg:py-2 xl:py-2.5 2xl:py-3
         md:px-3.5 lg:px-4 xl:px-4.5 2xl:px-5">
         ${ctg}

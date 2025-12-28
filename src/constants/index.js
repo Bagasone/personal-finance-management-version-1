@@ -101,6 +101,41 @@ const iconSize = {
   xl: 'text-4xl lg:text-5xl 2xl:text-6xl',
 };
 
+// Button data
+const btnAdd = {
+  label: 'Add',
+  iconClass: 'bi bi-plus-circle-fill',
+  extraClass: 'btn-add mt-3 col-span-2',
+};
+
+const btnUpdate = {
+  label: 'Update',
+  iconClass: 'bi bi-plus-circle-fill',
+  extraClass: 'btn-update mt-3 col-span-2',
+};
+
+// Status data
+// Balance status
+const balanceStatus = {
+  label: 'Current Balance',
+  iconClass: 'ri-wallet-3-fill',
+  placeholder: 'No Balance Today',
+};
+
+// Expense status
+const expenseStatus = {
+  label: 'Current Expense',
+  iconClass: 'ri-file-paper-2-fill',
+  placeholder: 'No Expense',
+};
+
+// Incomes status
+const incomeStatus = {
+  label: 'Current Income',
+  iconClass: 'ri-cash-fill',
+  placeholder: 'No Income',
+};
+
 export {
   links,
   icons,
@@ -109,4 +144,9 @@ export {
   socmed,
   iconContainerSize,
   iconSize,
+  btnAdd,
+  btnUpdate,
+  expenseStatus,
+  incomeStatus,
+  balanceStatus,
 };

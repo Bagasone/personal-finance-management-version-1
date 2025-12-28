@@ -1,9 +1,9 @@
-const button = (label, iconClass, cls) => {
+const button = ({ label, iconClass, extraClass }) => {
   return `
     <button class="
         font-bold text-base cursor-pointer frame frame-md
         min-w-full flex justify-center items-center gap-1 border-0 outline-2
-        ${cls}
+        ${extraClass}
         py-1 px-3 
         lg:py-1.5 xl:py-2 2xl:py-3.5
         lg:px-3.5 xl:px-4 2xl:px-4.5

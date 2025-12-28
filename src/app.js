@@ -27,7 +27,7 @@ app.innerHTML = `
   <header class="relative z-10 min-w-full">
     ${navbar()}
   </header>
-  <main class="
+  <main id="main" class="
     min-w-full grid grid-cols-12 gap-5 pt-12 
     sm:pt-14 md:pt-18 lg:pt-20 xl:pt-22 2xl:pt-12">
     <div class="relative z-10 md:col-span-2">
@@ -50,7 +50,8 @@ app.innerHTML = `
 </div>
 `;
 
-// Content element
+// Variables
+const main = document.querySelector('#main');
 const content = document.querySelector('#content');
 
 // Render
@@ -65,24 +66,33 @@ window.addEventListener('load', () => {
   toggleTheme();
 });
 
-// Navigation between page
-document.querySelectorAll('aside .link').forEach((e) =>
-  e.addEventListener('click', (event) => {
-    event.preventDefault();
+// Functionalities
+main.addEventListener('click', (e) => {
+  e.preventDefault();
 
-    const path = e.getAttribute('href');
-    return render(path);
-  })
-);
+  // Navigation between page
+  const link = e.target.closest('.link');
+  if (link) {
+    render(link.getAttribute('href'));
+  }
+
+  // Adding data
+  const btnAdd = e.target.closest('.btn-add');
+  if (btnAdd) {
+    // Adding expense
+    if (location.pathname === '/expense') {
+      const isSuccess = addExpense();
+      if (isSuccess) render(location.pathname);
+    }
+  }
+});
+
+// Toggle theme
+document
+  .querySelector('#toggle')
+  .addEventListener('click', () => toggleTheme());
 
 // Save the history of the page
 window.addEventListener('popstate', () => {
   document.getElementById('content').innerHTML = routes[location.pathname]();
-});
-
-// Adding data expense or income
-document.querySelector('#content').addEventListener('click', (e) => {
-  if (e.target.closest('.btn-add')) {
-    if (location.pathname === '/expense') addExpense();
-  }
 });

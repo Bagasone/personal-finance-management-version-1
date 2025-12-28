@@ -1,7 +1,7 @@
 // Components
 import icon from './icon.js';
 
-const status = ({ label, value, iconClass }, size = 'sm') => {
+const status = ({ label, iconClass, placeholder }, value, size = 'sm') => {
   return `
     <section class="
         min-w-full rounded-xl p-3 pr-4 flex justify-between items-center frame frame-lg
@@ -14,9 +14,9 @@ const status = ({ label, value, iconClass }, size = 'sm') => {
                 ${label}:
             </span>
             <h2 class="
-                max-w-[10ch] sub-title text-ellipsis whitespace-nowrap overflow-hidden
+                max-w-[10ch] sub-title capitalize text-ellipsis whitespace-nowrap overflow-hidden
                 sm:max-w-[20ch] md:max-w-[25] lg:max-w-[30] xl:max-w-[35] 2xl:max-w-[40xh]">
-                ${value}
+                ${value <= 0 ? placeholder : value}
             </h2>
         </div>
         ${iconClass ? icon(iconClass, size) : ''}

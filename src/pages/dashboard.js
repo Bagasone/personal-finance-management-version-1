@@ -1,26 +1,29 @@
-// Data
-import { expenses, incomes, balance, expense, income } from '../data/data.js';
-
-// Helper
+import { incomes } from '../data/data.js';
+import { balanceStatus, incomeStatus, expenseStatus } from '../constants';
+import {
+  getDailyExpense,
+  getTotalDailyExpense,
+} from '../data/expenseStorage.js';
 import { sortByHighest } from '../helper';
-
-// Components
 import { status, lists } from '../components';
 
 const dashboardPage = () => {
+  const dailyExpense = getDailyExpense();
+  const totalDailyExpense = getTotalDailyExpense();
+
   return `
       <section class="col-span-12 lg:col-span-6">
-        ${status(balance, 'md')}
+        ${status(balanceStatus, 'Rp 20.000.000', 'md')}
       </section>
       <section class="col-span-6 lg:col-span-3">
-        ${status({ ...expense, iconClass: null })}
+        ${status({ ...expenseStatus, iconClass: null }, totalDailyExpense)}
       </section>
       <section class="col-span-6 lg:col-span-3">
-        ${status({ ...income, iconClass: null })}
+        ${status({ ...incomeStatus, iconClass: null }, 'Rp 20.500.000')}
       </section>
       <section class="col-span-12 flex flex-col gap-3">
         <h2 class="sub-title">Most Highest Expenses:</h2>
-        ${lists(sortByHighest(expenses), 'expense')}
+        ${lists(sortByHighest(dailyExpense), 'expense')}
       </section>
       <section class="col-span-12 flex flex-col gap-3">
         <h2 class="sub-title">Most Highest Incomes:</h2>

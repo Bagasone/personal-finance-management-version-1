@@ -6,7 +6,7 @@ const input = ({ label, type, id, placeholder }) => {
       <label for="${id}" class="text-base lg:text-lg xl:text-xl 2xl:text-2xl font-semibold">
         ${label}:
       </label>
-      <input type="${type}" id="${id}" name="${id}" placeholder="${placeholder}" required 
+      <input type="${type}" id="${id}" name="${id}" placeholder="${placeholder}" autocomplete="off" required 
         class="
         text-sm frame frame-md px-3 py-1
         placeholder:text-gray-400
