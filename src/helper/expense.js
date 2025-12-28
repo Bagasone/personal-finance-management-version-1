@@ -1,33 +1,28 @@
 import { postExpense } from '../data/expenseStorage';
 import { expenseValidation } from './validation';
 
-const addExpense = () => {
-  const descInput = document.querySelector('#desc');
-  const ctgInput = document.querySelector('#ctg');
-  const priceInput = document.querySelector('#price');
-  const qtyInput = document.querySelector('#qty');
-
+const addExpense = ({ desc, ctg, price, qty }) => {
   const now = Date.now();
-
-  console.log(crypto.randomUUID());
 
   const newExpense = {
     id: crypto.randomUUID(),
-    desc: descInput.value,
-    ctg: ctgInput.value,
-    price: +priceInput.value,
-    qty: +qtyInput.value,
+    desc: String(desc),
+    ctg: String(ctg),
+    price: Number(price),
+    qty: Number(qty),
     date: now,
     createdAt: now,
     updatedAt: now,
   };
 
-  const isValidExpense = expenseValidation(newExpense);
+  const { isValidDesc, isValidCtg, isValidPrice, isValidQty } =
+    expenseValidation(newExpense);
 
-  if (isValidExpense) {
+  if (isValidDesc && isValidCtg && isValidPrice && isValidQty) {
     postExpense(newExpense);
-    return true;
   }
+
+  return { isValidDesc, isValidCtg, isValidPrice, isValidQty };
 };
 
 export { addExpense };

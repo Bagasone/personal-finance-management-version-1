@@ -25,7 +25,8 @@ const navbar = () => {
                 w-15.5 h-15.5 aspect-square object-cover object-center frame-lg
                 sm:w-16 md:w-16.5 lg:w-17 xl:w-17.5 2xl:w-24
                 sm:h-16 md:h-16.5 lg:h-17 xl:h-17.5 2xl:h-24" />
-            <div id="toggle" class="
+            <div class="
+                toggle
                 absolute flex flex-col gap-3 -left-3 -bottom-1 z-20 min-w-fit cursor-pointer
                 md:-left-3.5 xl:-left-4 
                 md:-bottom-1.5 xl:-bottom-2">

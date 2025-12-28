@@ -24,13 +24,13 @@ app.innerHTML = `
   transition-all duration-300 ease-in-out
   sm:px-18 md:px-20 lg:px-22 xl:px-24 2xl:p-26
   dark:bg-gray-900 dark:text-gray-200">
-  <header class="relative z-10 min-w-full">
+  <header id="header" class="relative z-10 min-w-full">
     ${navbar()}
   </header>
   <main id="main" class="
     min-w-full grid grid-cols-12 gap-5 pt-12 
     sm:pt-14 md:pt-18 lg:pt-20 xl:pt-22 2xl:pt-12">
-    <div class="relative z-10 md:col-span-2">
+    <div id="sidebar" class="relative z-10 md:col-span-2">
       ${sidebar()}
     </div>
     <div id="content" class="
@@ -51,12 +51,13 @@ app.innerHTML = `
 `;
 
 // Variables
-const main = document.querySelector('#main');
-const content = document.querySelector('#content');
+const headerEl = document.querySelector('#header');
+const sidebarEl = document.querySelector('#sidebar');
+const contentEl = document.querySelector('#content');
 
 // Render
 const render = (path) => {
-  routePage(content, routes, path);
+  routePage(contentEl, routes, path);
   toggleActive(path);
 };
 
@@ -66,31 +67,69 @@ window.addEventListener('load', () => {
   toggleTheme();
 });
 
-// Functionalities
-main.addEventListener('click', (e) => {
-  e.preventDefault();
-
-  // Navigation between page
-  const link = e.target.closest('.link');
-  if (link) {
-    render(link.getAttribute('href'));
-  }
-
-  // Adding data
-  const btnAdd = e.target.closest('.btn-add');
-  if (btnAdd) {
-    // Adding expense
-    if (location.pathname === '/expense') {
-      const isSuccess = addExpense();
-      if (isSuccess) render(location.pathname);
-    }
+// Functionalities in header
+headerEl.addEventListener('click', (e) => {
+  // Toggle theme page
+  const toggle = e.target.closest('.toggle');
+  if (toggle) {
+    e.preventDefault();
+    toggleTheme();
   }
 });
 
-// Toggle theme
-document
-  .querySelector('#toggle')
-  .addEventListener('click', () => toggleTheme());
+// Functionalitis in sidebar
+sidebarEl.addEventListener('click', (e) => {
+  // Navigation between page
+  const link = e.target.closest('.link');
+  if (link) {
+    e.preventDefault();
+    render(link.getAttribute('href'));
+  }
+});
+
+// Functionalities in content
+contentEl.addEventListener('click', (e) => {
+  // Adding data
+  const btnAdd = e.target.closest('.btn-add');
+  if (btnAdd) {
+    e.preventDefault();
+
+    // Adding expense
+    if (location.pathname === '/expense') {
+      const descInput = document.querySelector('#desc');
+      const ctgInput = document.querySelector('#ctg');
+      const priceInput = document.querySelector('#price');
+      const qtyInput = document.querySelector('#qty');
+
+      const rawExpense = {
+        desc: descInput.value,
+        ctg: ctgInput.value,
+        price: priceInput.value,
+        qty: qtyInput.value,
+      };
+
+      const { isValidDesc, isValidPrice, isValidQty, isValidCtg } =
+        addExpense(rawExpense);
+      if (isValidDesc && isValidPrice && isValidQty && isValidCtg) {
+        render(location.pathname);
+      } else {
+        isValidDesc
+          ? descInput.classList.remove('invalid')
+          : descInput.classList.add('invalid');
+
+        isValidPrice
+          ? priceInput.classList.remove('invalid')
+          : priceInput.classList.add('invalid');
+        isValidCtg
+          ? ctgInput.classList.remove('invalid')
+          : ctgInput.classList.add('invalid');
+        isValidQty
+          ? qtyInput.classList.remove('invalid')
+          : qtyInput.classList.add('invalid');
+      }
+    }
+  }
+});
 
 // Save the history of the page
 window.addEventListener('popstate', () => {

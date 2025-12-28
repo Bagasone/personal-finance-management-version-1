@@ -1,83 +1,53 @@
 const expenseValidation = ({ desc, ctg, price, qty }) => {
-  let isValid = true;
+  let isValidDesc = true;
+  let isValidCtg = true;
+  let isValidPrice = true;
+  let isValidQty = true;
 
-  if (descValidation(desc)) isValid = false;
+  if (descValidation(desc)) isValidDesc = false;
 
-  if (ctgValidation(ctg)) isValid = false;
+  if (ctgValidation(ctg)) isValidCtg = false;
 
-  if (priceValidation(price)) isValid = false;
+  if (priceValidation(price)) isValidPrice = false;
 
-  if (qtyValidation(qty)) isValid = false;
+  if (qtyValidation(qty)) isValidQty = false;
 
-  return isValid;
+  return { isValidDesc, isValidCtg, isValidPrice, isValidQty };
 };
 
 const incomeValidation = ({ desc, ctg, salary }) => {
-  let isValid = true;
+  let isValidDesc = true;
+  let isValidCtg = true;
+  let isValidSalary = true;
 
-  if (descValidation(desc)) isValid = false;
+  if (descValidation(desc)) isValidDesc = false;
 
-  if (ctgValidation(ctg)) isValid = false;
+  if (ctgValidation(ctg)) isValidCtg = false;
 
-  if (salaryValidation(salary)) isValid = false;
+  if (salaryValidation(salary)) isValidSalary;
 
-  return isValid;
+  return { isValidDesc, isValidCtg, isValidSalary };
 };
 
 // Validations
 const descValidation = (desc) => {
-  const descInput = document.querySelector('#desc');
-
-  if (desc.trim() === '') {
-    descInput.classList.add('invalid');
-    return true;
-  }
-
-  descInput.classList.remove('invalid');
+  if (desc.trim() === '') return true;
 };
 
 const priceValidation = (price) => {
-  const priceInput = document.querySelector('#price');
-
-  if (price <= 0) {
-    priceInput.classList.add('invalid');
-    return true;
-  }
-
-  priceInput.classList.remove('invalid');
+  if (price <= 0) return true;
 };
 
 const qtyValidation = (qty) => {
-  const qtyInput = document.querySelector('#qty');
-
-  if (qty <= 0) {
-    qtyInput.classList.add('invalid');
-    return true;
-  }
-
-  qtyInput.classList.remove('invalid');
+  if (qty <= 0) return true;
 };
 
 const ctgValidation = (ctg) => {
-  const ctgInput = document.querySelector('#ctg');
-
-  if (ctg.trim() === '') {
-    ctgInput.classList.add('invalid');
-    return true;
-  }
-
-  ctgInput.classList.remove('invalid');
+  if (ctg.trim() === '') return true;
 };
 
 const salaryValidation = (salary) => {
-  const salaryInput = document.querySelector('#salary');
-
-  if (salary <= 0) {
-    salaryInput.classList.add('invalid');
-    return true;
-  }
-
-  salaryInput.classList.remove('invalid');
+  if (salary <= 0) return true;
 };
 
 export { expenseValidation, incomeValidation };
