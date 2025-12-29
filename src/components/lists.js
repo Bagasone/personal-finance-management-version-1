@@ -51,7 +51,8 @@ const list = ({ desc, ctg, date, salary, price, qty, id }) => {
         ${salary ? incomeList(salary) : expenseList(price, qty)}
       </div>
       <div class="
-        col-span-2 flex justify-end flex-col gap-4
+      ${location.pathname === '/' ? 'hidden' : 'flex'}
+        col-span-2 justify-end flex-col gap-4
         lg:col-span-1 xs:flex-row">
         <div dataset-id-expense="${id}" class="btn-delete cursor-pointer text-red-600 rounded-xl">
           ${icon(icons['delete'], 'xs')}

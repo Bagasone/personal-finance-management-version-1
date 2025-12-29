@@ -9,7 +9,11 @@ const button = ({ label, iconClass, extraClass }) => {
         lg:px-3.5 xl:px-4 2xl:px-4.5
         text-base lg:text-lg xl:text-xl 2xl:text-2xl">
         ${label}
-        <i class="${iconClass} text-base lg:text-lg xl:text-xl 2xl:text-2xl"></i>
+        ${
+          iconClass
+            ? `<i class="${iconClass} text-base lg:text-lg xl:text-xl 2xl:text-2xl"></i>`
+            : ''
+        }
     </button>
 `;
 };

@@ -4,7 +4,6 @@ import {
   getTotalDailyExpense,
 } from '../data/expenseStorage.js';
 import { getDailyIncome } from '../data/incomeStorage.js';
-import { sortByHighest } from '../helper';
 import { status, lists } from '../components';
 
 const dashboardPage = () => {
@@ -25,11 +24,11 @@ const dashboardPage = () => {
       </section>
       <section class="col-span-12 flex flex-col gap-3">
         <h2 class="sub-title">Most Highest Expenses:</h2>
-        ${lists(sortByHighest(dailyExpense), 'expense')}
+        ${lists(dailyExpense, 'expense')}
       </section>
       <section class="col-span-12 flex flex-col gap-3">
         <h2 class="sub-title">Most Highest Incomes:</h2>
-        ${lists(sortByHighest(dailyIncome), 'income')}
+        ${lists(dailyIncome, 'income')}
       </section>
 `;
 };

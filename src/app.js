@@ -4,7 +4,7 @@ import 'remixicon/fonts/remixicon.css';
 import { dashboardPage, expensePage, incomePage, notFoundPage } from './pages';
 import { toggleActive, toggleTheme, addExpense, routePage } from './helper';
 import { navbar, sidebar, text, link } from './components';
-import { socmed } from './constants';
+import { btnNo, socmed } from './constants';
 
 // Routing pages
 const routes = {
@@ -142,6 +142,19 @@ contentEl.addEventListener('click', (e) => {
           : qtyInput.classList.add('invalid');
       }
     }
+  }
+
+  // Delete data
+  const btnDelete = e.target.closest('.btn-delete');
+  if (btnDelete) {
+    e.preventDefault();
+    document.querySelector('#modal').show();
+  }
+
+  // Close modal
+  const btnClose = e.target.closest('.btn-no');
+  if (btnClose) {
+    document.querySelector('#modal').close();
   }
 });
 

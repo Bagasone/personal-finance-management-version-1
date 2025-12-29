@@ -116,6 +116,18 @@ const btnUpdate = {
   extraClass: 'btn-update mt-3 col-span-2',
 };
 
+const btnYes = {
+  label: 'Yes',
+  iconClass: 'ri-check-fill',
+  extraClass: 'btn-yes text-emerald-600',
+};
+
+const btnNo = {
+  label: 'No',
+  iconClass: 'ri-close-fill',
+  extraClass: 'btn-no text-rose-600',
+};
+
 // Status data
 // Balance status
 const balanceStatus = {
@@ -148,6 +160,8 @@ export {
   iconSize,
   btnAdd,
   btnUpdate,
+  btnYes,
+  btnNo,
   expenseStatus,
   incomeStatus,
   balanceStatus,
