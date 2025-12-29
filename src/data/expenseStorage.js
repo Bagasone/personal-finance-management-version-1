@@ -12,6 +12,7 @@ const getTotalDailyExpense = () =>
 const postExpense = (data) => {
   dailyExpense.push(data);
   localStorage.setItem('dailyExpense', JSON.stringify(dailyExpense));
+  return true;
 };
 
 export { getDailyExpense, getTotalDailyExpense, postExpense };

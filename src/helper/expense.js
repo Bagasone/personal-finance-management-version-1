@@ -19,7 +19,14 @@ const addExpense = ({ desc, ctg, price, qty }) => {
     expenseValidation(newExpense);
 
   if (isValidDesc && isValidCtg && isValidPrice && isValidQty) {
-    postExpense(newExpense);
+    const isStoreSuccess = postExpense(newExpense);
+    return {
+      isValidDesc,
+      isValidCtg,
+      isValidPrice,
+      isValidQty,
+      isStoreSuccess,
+    };
   }
 
   return { isValidDesc, isValidCtg, isValidPrice, isValidQty };

@@ -108,9 +108,21 @@ contentEl.addEventListener('click', (e) => {
         qty: qtyInput.value,
       };
 
-      const { isValidDesc, isValidPrice, isValidQty, isValidCtg } =
-        addExpense(rawExpense);
-      if (isValidDesc && isValidPrice && isValidQty && isValidCtg) {
+      const {
+        isValidDesc,
+        isValidPrice,
+        isValidQty,
+        isValidCtg,
+        isStoreSuccess,
+      } = addExpense(rawExpense);
+
+      if (
+        isValidDesc &&
+        isValidPrice &&
+        isValidQty &&
+        isValidCtg &&
+        isStoreSuccess
+      ) {
         render(location.pathname);
       } else {
         isValidDesc
@@ -120,9 +132,11 @@ contentEl.addEventListener('click', (e) => {
         isValidPrice
           ? priceInput.classList.remove('invalid')
           : priceInput.classList.add('invalid');
+
         isValidCtg
           ? ctgInput.classList.remove('invalid')
           : ctgInput.classList.add('invalid');
+
         isValidQty
           ? qtyInput.classList.remove('invalid')
           : qtyInput.classList.add('invalid');
