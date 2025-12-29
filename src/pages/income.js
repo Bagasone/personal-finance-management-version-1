@@ -1,8 +1,10 @@
 import { status, form, lists } from '../components';
-import { incomes } from '../data/data.js';
 import { btnAdd, incomeForm, incomeStatus } from '../constants';
+import { getDailyIncome } from '../data/incomeStorage';
 
 const incomePage = () => {
+  const dailyIncome = getDailyIncome();
+
   return `
     <section class="col-span-12">
         ${status(incomeStatus, 'Rp 20.500.00', 'md')}
@@ -13,7 +15,7 @@ const incomePage = () => {
     </section>
     <section class="col-span-12 flex flex-col gap-2.5 2xl:gap-3">
         <h2 class="sub-title">List Incomes</h2>
-        ${lists(incomes, 'income')}
+        ${lists(dailyIncome, 'income')}
     </section>
 `;
 };

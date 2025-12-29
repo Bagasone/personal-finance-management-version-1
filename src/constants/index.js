@@ -35,6 +35,8 @@ const icons = {
   freelance: 'ri-timer-2-fill',
   profit: 'ri-bar-chart-2-fill',
   other: 'ri-shopping-bag-4-fill',
+  delete: 'ri-delete-bin-2-fill',
+  edit: 'ri-edit-box-fill',
 };
 
 // Form data
@@ -86,7 +88,7 @@ const incomeForm = [
 
 // Icons size class
 const iconContainerSize = {
-  xs: 'w-6 h-6 lg:w-7.5 lg:h-7.5 2xl:w-9 2xl:h-9 frame-xs',
+  xs: 'w-5 h-5 xs:w-6 xs:h-6 lg:w-7.5 lg:h-7.5 2xl:w-9 2xl:h-9 frame-xs',
   sm: 'w-9 h-9 2xl:w-10 2xl:h-10 frame-sm',
   md: 'w-10 h-10 2xl:w-11 2xl:h-11 frame-md',
   lg: 'w-11 h-11 2xl:w-12 2xl:h-12 frame-lg',
@@ -94,7 +96,7 @@ const iconContainerSize = {
 };
 
 const iconSize = {
-  xs: 'text-base lg:text-lg 2xl:text-2xl',
+  xs: 'text-sm xs:text-base lg:text-lg 2xl:text-2xl',
   sm: 'text-xl lg:text-2xl 2xl:text-3xl',
   md: 'text-2xl lg:text-3xl 2xl:text-4xl',
   lg: 'text-3xl lg:text-4xl 2xl:text-5xl',

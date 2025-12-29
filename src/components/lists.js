@@ -7,7 +7,7 @@ import { icons } from '../constants/index.js';
 const lists = (data, type) => {
   return `
     <ul class="
-      min-w-full pt-3 pb-4 px-5 frame frame-xl
+      min-w-full pt-5 pb-6 px-4 frame frame-xl
       flex flex-col justify-center items-center gap-2.5
       sm:gap-3 md:gap-3.5 lg:gap-4 xl:gap-4.5 2xl:gap-5
       sm:pt-3.5 md:pt-4 lg:pt-4.5 xl:pt-5 2xl:pt-5.5
@@ -22,29 +22,43 @@ const lists = (data, type) => {
 `;
 };
 
-const list = ({ desc, ctg, date, salary, price, qty }) => {
+const list = ({ desc, ctg, date, salary, price, qty, id }) => {
   return `
     <li class="
-      min-w-full min-h-15 py-1.5 px-3 rounded-xl overflow-hidden bg-gray-200
+      min-w-full min-h-20 py-1.5 px-2 rounded-xl overflow-hidden bg-gray-200
       grid grid-cols-12 grid-rows-1 items-center gap-3
       transition-all duration-300 ease-in-out
+      xs:px-3 sm:px-5 lg:px-6 xl:px-7 2xl:px-8
       sm:gap-3.5 md:gap-4 lg:gap-4.5 xl:gap-5 2xl:gap-5.5
       dark:bg-gray-800">
-      <div class="col-span-2 sm:col-span-1">
-      ${icon(icons[ctg], 'xs')}
+      <div class="col-span-2 lg:col-span-1 max-xs:hidden">
+        ${icon(icons[ctg], 'xs')}
       </div>
-      <div class="flex flex-col col-span-6 sm:col-span-7">
+      <div class="flex flex-col col-span-5 xs:col-span-4 lg:col-span-5">
         <h3 class="
           max-w-[10ch] 
-          text-ellipsis overflow-hidden text-nowrap font-semibold
+          text-base text-ellipsis overflow-hidden text-nowrap font-semibold
           md:max-w-[15ch] lg:max-w-[20ch] xl:max-w-[25ch]
-          text-base md:text-lg lg:text-xl 2xl:text-2xl">
+          md:text-lg lg:text-xl 2xl:text-2xl">
           ${desc}
         </h3>
         <p class="ml-2 text-[.6rem] lg:text-[.8rem]">${date}</p>
       </div>
-      <div class="col-span-4">
+      <div class="
+        col-span-5 text-ellipsis overflow-hidden text-nowrap
+        xs:col-span-4 lg:col-span-5
+        md:max-w-[15ch] lg:max-w-[20ch] xl:max-w-[25ch]">
         ${salary ? incomeList(salary) : expenseList(price, qty)}
+      </div>
+      <div class="
+        col-span-2 flex justify-end flex-col gap-4
+        lg:col-span-1 xs:flex-row">
+        <div dataset-id-expense="${id}" class="btn-delete cursor-pointer text-red-600 rounded-xl">
+          ${icon(icons['delete'], 'xs')}
+        </div>
+        <div dataset-id-expense="${id}"  class="btn-edit cursor-pointer text-blue-600 rounded-xl">
+          ${icon(icons['edit'], 'xs')}
+        </div>
       </div>
     </li>
 `;
