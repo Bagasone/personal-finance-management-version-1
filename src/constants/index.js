@@ -107,25 +107,29 @@ const iconSize = {
 const btnAdd = {
   label: 'Add',
   iconClass: 'bi bi-plus-circle-fill',
-  extraClass: 'btn-add mt-3 col-span-2',
+  extraClass: 'mt-3 col-span-2',
+  id: 'btn-add',
 };
 
 const btnUpdate = {
   label: 'Update',
   iconClass: 'bi bi-plus-circle-fill',
-  extraClass: 'btn-update mt-3 col-span-2',
+  extraClass: 'mt-3 col-span-2',
+  id: 'btn-update',
 };
 
-const btnYes = {
+const btnAccept = {
   label: 'Yes',
   iconClass: 'ri-check-fill',
-  extraClass: 'btn-yes text-emerald-600',
+  extraClass: 'text-emerald-600',
+  id: 'btn-accept',
 };
 
-const btnNo = {
+const btnReject = {
   label: 'No',
   iconClass: 'ri-close-fill',
-  extraClass: 'btn-no text-rose-600',
+  extraClass: 'text-rose-600',
+  id: 'btn-reject',
 };
 
 // Status data
@@ -160,8 +164,8 @@ export {
   iconSize,
   btnAdd,
   btnUpdate,
-  btnYes,
-  btnNo,
+  btnAccept,
+  btnReject,
   expenseStatus,
   incomeStatus,
   balanceStatus,

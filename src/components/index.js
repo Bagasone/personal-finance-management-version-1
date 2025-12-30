@@ -10,7 +10,7 @@ import lists from './lists';
 import status from './status';
 import navbar from './navbar';
 import sidebar from './sidebar';
-import { modalConfirm } from './modal';
+import modal from './modal';
 
 export {
   text,
@@ -24,5 +24,5 @@ export {
   status,
   navbar,
   sidebar,
-  modalConfirm,
+  modal,
 };

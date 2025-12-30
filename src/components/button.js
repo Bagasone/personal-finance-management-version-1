@@ -1,6 +1,6 @@
-const button = ({ label, iconClass, extraClass }) => {
+const button = ({ label, iconClass, extraClass, id = '' }) => {
   return `
-    <button class="
+    <button ${id !== '' ? `id=${id}` : ''} class="
         font-bold text-base cursor-pointer frame frame-md
         min-w-full flex justify-center items-center gap-1 border-0 outline-2
         ${extraClass}

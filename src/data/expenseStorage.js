@@ -1,6 +1,12 @@
 // Daily expense
 let dailyExpense = JSON.parse(localStorage.getItem('dailyExpense')) || [];
 
+// Save daily expense
+const saveDailyExpense = (newDailyExpense) => {
+  localStorage.setItem('dailyExpense', JSON.stringify(newDailyExpense));
+  return true;
+};
+
 // Get daily expense
 const getDailyExpense = () => dailyExpense;
 
@@ -11,16 +17,14 @@ const getTotalDailyExpense = () =>
 // Add new expense
 const postExpense = (data) => {
   dailyExpense.push(data);
-  localStorage.setItem('dailyExpense', JSON.stringify(dailyExpense));
-  return true;
+  return saveDailyExpense(dailyExpense);
 };
 
 const deleteExpense = (id) => {
   const newDailyExpense = dailyExpense.filter((item) => item.id !== id);
   if (newDailyExpense) {
     dailyExpense = newDailyExpense;
-    localStorage.setItem('dailyExpense', JSON.stringify(dailyExpense));
-    return true;
+    return saveDailyExpense(newDailyExpense);
   }
   return false;
 };

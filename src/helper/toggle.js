@@ -1,6 +1,6 @@
 const toggleTheme = () => {
   let isDark = document.documentElement.dataset.theme;
-  const iconTheme = document.querySelector('.toggle i');
+  const iconTheme = document.querySelector('#toggle i');
   if (isDark !== 'dark') {
     document.documentElement.dataset.theme = 'dark';
     iconTheme.classList.remove('ri-moon-clear-fill');

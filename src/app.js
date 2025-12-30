@@ -4,8 +4,8 @@ import 'remixicon/fonts/remixicon.css';
 import { dashboardPage, expensePage, incomePage, notFoundPage } from './pages';
 import { toggleActive, toggleTheme, addExpense, routePage } from './helper';
 import { navbar, sidebar, text, link } from './components';
-import { btnNo, socmed } from './constants';
-import { deleteExpenseById, findExpenseById } from './helper/expense';
+import { socmed } from './constants';
+import { deleteExpenseById } from './helper/expense';
 
 // Routing pages
 const routes = {
@@ -71,7 +71,7 @@ window.addEventListener('load', () => {
 // Functionalities in header
 headerEl.addEventListener('click', (e) => {
   // Toggle theme page
-  const toggle = e.target.closest('.toggle');
+  const toggle = e.target.closest('#toggle');
   if (toggle) {
     e.preventDefault();
     toggleTheme();
@@ -90,10 +90,10 @@ sidebarEl.addEventListener('click', (e) => {
 
 // Functionalities in content
 contentEl.addEventListener('click', (e) => {
-  const modalConfirm = document.querySelector('#modal-confirm');
+  const modalConfirm = document.querySelector('#modalConfirm');
 
   // Adding data
-  const btnAdd = e.target.closest('.btn-add');
+  const btnAdd = e.target.closest('#btn-add');
   if (btnAdd) {
     e.preventDefault();
 
@@ -150,29 +150,28 @@ contentEl.addEventListener('click', (e) => {
   // Delete data
   const btnDelete = e.target.closest('.btn-delete');
   if (btnDelete) {
-    e.preventDefault();
-    const expense = findExpenseById(btnDelete.dataset.idExpense);
-    modalConfirm.show();
-    modalConfirm.dataset.idExpense = expense.id;
-    modalConfirm.querySelector(
-      '.modal-desc'
-    ).innerHTML = `Do you want delete ${expense.desc}`;
-  }
-
-  // Confirm delete data
-  const btnConfirm = e.target.closest('.btn-yes');
-  if (btnConfirm) {
-    const isDeleted = deleteExpenseById(modal.dataset.idExpense);
-    if (isDeleted) {
-      render(location.pathname);
+    // Delete expense
+    if (location.pathname === '/expense') {
+      modalConfirm.dataset.idExpense = btnDelete.dataset.idExpense;
+      modalConfirm.show();
     }
   }
 
-  // Close modal
-  const btnClose = e.target.closest('.btn-no');
-  if (btnClose) {
-    modal.dataset.idExpense = '';
-    modal.close();
+  // Confirm
+  const btnAccept = e.target.closest('#btn-accept');
+  if (btnAccept) {
+    // Confirm delete expense
+    if (location.pathname === '/expense') {
+      const isDeleted = deleteExpenseById(modalConfirm.dataset.idExpense);
+      if (isDeleted) render(location.pathname);
+    }
+  }
+
+  // Reject
+  const btnReject = e.target.closest('#btn-reject');
+  if (btnReject) {
+    modalConfirm.dataset.idExpense = '';
+    modalConfirm.close();
   }
 });
 
