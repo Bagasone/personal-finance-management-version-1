@@ -54,10 +54,10 @@ const list = ({ desc, ctg, date, salary, price, qty, id }) => {
       ${location.pathname === '/' ? 'hidden' : 'flex'}
         col-span-2 justify-end flex-col gap-4
         lg:col-span-1 xs:flex-row">
-        <div dataset-id-expense="${id}" class="btn-delete cursor-pointer text-red-600 rounded-xl">
+        <div data-id-expense="${id}" class="btn-delete cursor-pointer text-red-600 rounded-xl">
           ${icon(icons['delete'], 'xs')}
         </div>
-        <div dataset-id-expense="${id}"  class="btn-edit cursor-pointer text-blue-600 rounded-xl">
+        <div data-id-expense="${id}"  class="btn-edit cursor-pointer text-blue-600 rounded-xl">
           ${icon(icons['edit'], 'xs')}
         </div>
       </div>

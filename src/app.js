@@ -5,6 +5,7 @@ import { dashboardPage, expensePage, incomePage, notFoundPage } from './pages';
 import { toggleActive, toggleTheme, addExpense, routePage } from './helper';
 import { navbar, sidebar, text, link } from './components';
 import { btnNo, socmed } from './constants';
+import { deleteExpenseById, findExpenseById } from './helper/expense';
 
 // Routing pages
 const routes = {
@@ -89,6 +90,8 @@ sidebarEl.addEventListener('click', (e) => {
 
 // Functionalities in content
 contentEl.addEventListener('click', (e) => {
+  const modalConfirm = document.querySelector('#modal-confirm');
+
   // Adding data
   const btnAdd = e.target.closest('.btn-add');
   if (btnAdd) {
@@ -148,13 +151,28 @@ contentEl.addEventListener('click', (e) => {
   const btnDelete = e.target.closest('.btn-delete');
   if (btnDelete) {
     e.preventDefault();
-    document.querySelector('#modal').show();
+    const expense = findExpenseById(btnDelete.dataset.idExpense);
+    modalConfirm.show();
+    modalConfirm.dataset.idExpense = expense.id;
+    modalConfirm.querySelector(
+      '.modal-desc'
+    ).innerHTML = `Do you want delete ${expense.desc}`;
+  }
+
+  // Confirm delete data
+  const btnConfirm = e.target.closest('.btn-yes');
+  if (btnConfirm) {
+    const isDeleted = deleteExpenseById(modal.dataset.idExpense);
+    if (isDeleted) {
+      render(location.pathname);
+    }
   }
 
   // Close modal
   const btnClose = e.target.closest('.btn-no');
   if (btnClose) {
-    document.querySelector('#modal').close();
+    modal.dataset.idExpense = '';
+    modal.close();
   }
 });
 

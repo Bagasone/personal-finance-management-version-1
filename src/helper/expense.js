@@ -1,4 +1,8 @@
-import { postExpense } from '../data/expenseStorage';
+import {
+  getDailyExpense,
+  postExpense,
+  deleteExpense,
+} from '../data/expenseStorage';
 import { expenseValidation } from './validation';
 
 const addExpense = ({ desc, ctg, price, qty }) => {
@@ -32,4 +36,14 @@ const addExpense = ({ desc, ctg, price, qty }) => {
   return { isValidDesc, isValidCtg, isValidPrice, isValidQty };
 };
 
-export { addExpense };
+const findExpenseById = (id) => {
+  const dailyExpense = getDailyExpense();
+  return dailyExpense.find((item) => item.id === id);
+};
+
+const deleteExpenseById = (id) => {
+  const isDeleted = deleteExpense(id);
+  return isDeleted;
+};
+
+export { addExpense, findExpenseById, deleteExpenseById };

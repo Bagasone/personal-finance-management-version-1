@@ -15,4 +15,14 @@ const postExpense = (data) => {
   return true;
 };
 
-export { getDailyExpense, getTotalDailyExpense, postExpense };
+const deleteExpense = (id) => {
+  const newDailyExpense = dailyExpense.filter((item) => item.id !== id);
+  if (newDailyExpense) {
+    dailyExpense = newDailyExpense;
+    localStorage.setItem('dailyExpense', JSON.stringify(dailyExpense));
+    return true;
+  }
+  return false;
+};
+
+export { getDailyExpense, getTotalDailyExpense, postExpense, deleteExpense };
