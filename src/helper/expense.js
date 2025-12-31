@@ -44,10 +44,10 @@ const findExpenseById = (id) => {
 const deleteExpenseById = (id) => {
   const isExpenseExist = findExpenseById(id);
   if (isExpenseExist) {
-    const isDeleted = deleteExpense(id);
-    return isDeleted;
+    return deleteExpense(id);
+  } else {
+    return false;
   }
-  return false;
 };
 
 export { addExpense, findExpenseById, deleteExpenseById };

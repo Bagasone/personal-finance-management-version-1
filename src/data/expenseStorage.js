@@ -3,6 +3,7 @@ let dailyExpense = JSON.parse(localStorage.getItem('dailyExpense')) || [];
 
 // Save daily expense
 const saveDailyExpense = (newDailyExpense) => {
+  dailyExpense = newDailyExpense;
   localStorage.setItem('dailyExpense', JSON.stringify(newDailyExpense));
   return true;
 };

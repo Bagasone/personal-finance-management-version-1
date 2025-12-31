@@ -3,7 +3,7 @@ import 'remixicon/fonts/remixicon.css';
 
 import { dashboardPage, expensePage, incomePage, notFoundPage } from './pages';
 import { toggleActive, toggleTheme, addExpense, routePage } from './helper';
-import { navbar, sidebar, text, link } from './components';
+import { navbar, sidebar, text, link, popup } from './components';
 import { socmed } from './constants';
 import { deleteExpenseById } from './helper/expense';
 
@@ -25,13 +25,13 @@ app.innerHTML = `
   transition-all duration-300 ease-in-out
   sm:px-18 md:px-20 lg:px-22 xl:px-24 2xl:p-26
   dark:bg-gray-900 dark:text-gray-200">
-  <header id="header" class="relative z-10 min-w-full">
+  <header id="header" class="relative z-1 min-w-full">
     ${navbar()}
   </header>
   <main id="main" class="
     min-w-full grid grid-cols-12 gap-5 pt-12 
     sm:pt-14 md:pt-18 lg:pt-20 xl:pt-22 2xl:pt-12">
-    <div id="sidebar" class="relative z-10 md:col-span-2">
+    <div id="sidebar" class="relative z-1 md:col-span-2">
       ${sidebar()}
     </div>
     <div id="content" class="
@@ -48,6 +48,7 @@ app.innerHTML = `
     md:pl-22 lg:pl-24 xl:pl-26 2xl:pl-28">
     ${text(`© Create by ${link(socmed)} with full of 💖 - 2025`)}
   </footer>
+  ${popup()}
 </div>
 `;
 
@@ -55,6 +56,7 @@ app.innerHTML = `
 const headerEl = document.querySelector('#header');
 const sidebarEl = document.querySelector('#sidebar');
 const contentEl = document.querySelector('#content');
+const popupMessage = document.querySelector('#popupMessage');
 
 // Render
 const render = (path) => {
@@ -127,6 +129,16 @@ contentEl.addEventListener('click', (e) => {
         isStoreSuccess
       ) {
         render(location.pathname);
+        popupMessage.classList.add('success');
+        popupMessage.classList.add('animate-popup');
+        popupMessage.querySelector('span').innerText =
+          'Expense berhasil ditambahkan!';
+        setTimeout(() => {
+          popupMessage.classList.remove('success');
+          popupMessage.classList.remove('animate-popup');
+          popupMessage.querySelector('span').innerText = '';
+        }, 3000);
+        clearTimeout();
       } else {
         isValidDesc
           ? descInput.classList.remove('invalid')
@@ -159,7 +171,15 @@ contentEl.addEventListener('click', (e) => {
         modalConfirm.dataset.idExpense = currentExpenseId;
         modalConfirm.show();
       } else {
-        alert('Expense tidak ada!');
+        popupMessage.classList.add('fail');
+        popupMessage.classList.add('animate-popup');
+        popupMessage.querySelector('span').innerText =
+          'Expense tidak ditemukan!';
+        setTimeout(() => {
+          popupMessage.classList.remove('fail');
+          popupMessage.classList.remove('animate-popup');
+          popupMessage.querySelector('span').innerText = '';
+        }, 3000);
       }
     }
   }
@@ -170,7 +190,21 @@ contentEl.addEventListener('click', (e) => {
     // Confirm delete expense
     if (location.pathname === '/expense') {
       const isDeleted = deleteExpenseById(modalConfirm.dataset.idExpense);
-      if (isDeleted) render(location.pathname);
+      if (isDeleted) {
+        modalConfirm.dataset.idExpense = '';
+        modalConfirm.close();
+        render(location.pathname);
+        popupMessage.classList.add('fail');
+        popupMessage.classList.add('animate-popup');
+        popupMessage.querySelector('span').innerText =
+          'Expense berhasil dihapus!';
+        setTimeout(() => {
+          popupMessage.classList.remove('fail');
+          popupMessage.classList.remove('animate-popup');
+          popupMessage.querySelector('span').innerText = '';
+        }, 3000);
+        clearTimeout();
+      }
     }
   }
 

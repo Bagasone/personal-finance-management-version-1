@@ -9,6 +9,7 @@
 
     --animate-slide: slide .3s ease-in forwards;
     --animate-wiggle: wiggle 1s ease-in-out infinite;
+    --animate-popup: popup 3s ease forwards;
 
     @keyframes wiggle {
 
@@ -31,6 +32,23 @@
         to {
             transform: translateX(0%);
             opacity: 1;
+        }
+    }
+
+    @keyframes popup {
+
+        0%,
+        100% {
+            display: flex;
+            opacity: 0;
+            right: -100%;
+            bottom: 5%;
+        }
+
+        10%,
+        90% {
+            opacity: 1;
+            right: 5%;
         }
     }
 }
@@ -87,4 +105,14 @@
     .invalid {
         @apply text-rose-700 outline-rose-700 dark:text-rose-500 dark:outline-rose-500;
     }
+
+    .fail {
+        @apply font-semibold text-rose-500 bg-rose-50;
+    }
+
+    .success {
+        @apply font-semibold text-emerald-500 bg-emerald-50;
+    }
+
+
 }

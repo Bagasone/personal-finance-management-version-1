@@ -11,6 +11,7 @@ import status from './status';
 import navbar from './navbar';
 import sidebar from './sidebar';
 import modal from './modal';
+import popup from './popup';
 
 export {
   text,
@@ -25,4 +26,5 @@ export {
   navbar,
   sidebar,
   modal,
+  popup,
 };
