@@ -42,8 +42,12 @@ const findExpenseById = (id) => {
 };
 
 const deleteExpenseById = (id) => {
-  const isDeleted = deleteExpense(id);
-  return isDeleted;
+  const isExpenseExist = findExpenseById(id);
+  if (isExpenseExist) {
+    const isDeleted = deleteExpense(id);
+    return isDeleted;
+  }
+  return false;
 };
 
 export { addExpense, findExpenseById, deleteExpenseById };

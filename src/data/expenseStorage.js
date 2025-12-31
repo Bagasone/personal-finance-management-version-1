@@ -22,11 +22,7 @@ const postExpense = (data) => {
 
 const deleteExpense = (id) => {
   const newDailyExpense = dailyExpense.filter((item) => item.id !== id);
-  if (newDailyExpense) {
-    dailyExpense = newDailyExpense;
-    return saveDailyExpense(newDailyExpense);
-  }
-  return false;
+  return saveDailyExpense(newDailyExpense);
 };
 
 export { getDailyExpense, getTotalDailyExpense, postExpense, deleteExpense };

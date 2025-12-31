@@ -151,9 +151,16 @@ contentEl.addEventListener('click', (e) => {
   const btnDelete = e.target.closest('.btn-delete');
   if (btnDelete) {
     // Delete expense
+    const expenseList = e.target.closest('li');
+
     if (location.pathname === '/expense') {
-      modalConfirm.dataset.idExpense = btnDelete.dataset.idExpense;
-      modalConfirm.show();
+      const currentExpenseId = expenseList.dataset.idExpense;
+      if (currentExpenseId) {
+        modalConfirm.dataset.idExpense = currentExpenseId;
+        modalConfirm.show();
+      } else {
+        alert('Expense tidak ada!');
+      }
     }
   }
 

@@ -24,7 +24,7 @@ const lists = (data, type) => {
 
 const list = ({ desc, ctg, date, salary, price, qty, id }) => {
   return `
-    <li class="
+    <li data-id-expense="${id}" class="
       min-w-full min-h-20 py-1.5 px-2 rounded-xl overflow-hidden bg-gray-200
       grid grid-cols-12 grid-rows-1 items-center gap-3
       transition-all duration-300 ease-in-out
@@ -54,10 +54,10 @@ const list = ({ desc, ctg, date, salary, price, qty, id }) => {
       ${location.pathname === '/' ? 'hidden' : 'flex'}
         col-span-2 justify-end flex-col gap-4
         lg:col-span-1 xs:flex-row">
-        <div data-id-expense="${id}" class="btn-delete cursor-pointer text-red-600 rounded-xl">
+        <div class="btn-delete cursor-pointer text-red-600 rounded-xl">
           ${icon(icons['delete'], 'xs')}
         </div>
-        <div data-id-expense="${id}"  class="btn-edit cursor-pointer text-blue-600 rounded-xl">
+        <div class="btn-edit cursor-pointer text-blue-600 rounded-xl">
           ${icon(icons['edit'], 'xs')}
         </div>
       </div>
