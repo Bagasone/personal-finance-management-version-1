@@ -1,11 +1,11 @@
 import './app.css';
 import 'remixicon/fonts/remixicon.css';
 
+import { addExpense, deleteExpenseById } from './app/expense.js';
 import { dashboardPage, expensePage, incomePage, notFoundPage } from './pages';
-import { toggleActive, toggleTheme, addExpense, routePage } from './helper';
+import { toggleActive, toggleTheme, routePage } from './helper';
 import { navbar, sidebar, text, link, popup } from './components';
 import { socmed } from './constants';
-import { deleteExpenseById } from './helper/expense';
 
 // Routing pages
 const routes = {
@@ -217,6 +217,4 @@ contentEl.addEventListener('click', (e) => {
 });
 
 // Save the history of the page
-window.addEventListener('popstate', () => {
-  document.getElementById('content').innerHTML = routes[location.pathname]();
-});
+window.addEventListener('popstate', () => render(location.pathname));

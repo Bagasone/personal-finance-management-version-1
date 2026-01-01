@@ -3,7 +3,28 @@ import {
   postExpense,
   deleteExpense,
 } from '../data/expenseStorage';
-import { expenseValidation } from './validation';
+import {
+  descValidation,
+  priceValidation,
+  qtyValidation,
+  ctgValidation,
+} from '../helper/validation';
+
+const expenseValidation = ({ desc, ctg, price, qty }) => {
+  let validationResult = {
+    isValidDesc: true,
+    isValidPrice: true,
+    isValidQty: true,
+    isValidCtg: true,
+  };
+
+  if (descValidation(desc)) validationResult.isValidDesc = false;
+  if (ctgValidation(ctg)) validationResult.isValidCtg = false;
+  if (priceValidation(price)) validationResult.isValidPrice = false;
+  if (qtyValidation(qty)) validationResult.isValidQty = false;
+
+  return validationResult;
+};
 
 const addExpense = ({ desc, ctg, price, qty }) => {
   const now = Date.now();

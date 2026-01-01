@@ -1,9 +1,11 @@
 // Route pages
 function routePage(mainElement, routes, path = '/') {
-  if (window.location.pathname !== path)
+  if (window.location.pathname !== path) {
+    // Save route in window history
+    window.history.pushState({}, path, window.location.origin + path);
+
     setTimeout(() => mainElement.classList.add('animate-slide'), 0);
-  // Save route in window history
-  window.history.pushState({}, path, window.location.origin + path);
+  }
 
   mainElement.classList.remove('animate-slide');
 

@@ -1,33 +1,16 @@
-const expenseValidation = ({ desc, ctg, price, qty }) => {
-  let isValidDesc = true;
-  let isValidCtg = true;
-  let isValidPrice = true;
-  let isValidQty = true;
+// const incomeValidation = ({ desc, ctg, salary }) => {
+//   let isValidDesc = true;
+//   let isValidCtg = true;
+//   let isValidSalary = true;
 
-  if (descValidation(desc)) isValidDesc = false;
+//   if (descValidation(desc)) isValidDesc = false;
 
-  if (ctgValidation(ctg)) isValidCtg = false;
+//   if (ctgValidation(ctg)) isValidCtg = false;
 
-  if (priceValidation(price)) isValidPrice = false;
+//   if (salaryValidation(salary)) isValidSalary;
 
-  if (qtyValidation(qty)) isValidQty = false;
-
-  return { isValidDesc, isValidCtg, isValidPrice, isValidQty };
-};
-
-const incomeValidation = ({ desc, ctg, salary }) => {
-  let isValidDesc = true;
-  let isValidCtg = true;
-  let isValidSalary = true;
-
-  if (descValidation(desc)) isValidDesc = false;
-
-  if (ctgValidation(ctg)) isValidCtg = false;
-
-  if (salaryValidation(salary)) isValidSalary;
-
-  return { isValidDesc, isValidCtg, isValidSalary };
-};
+//   return { isValidDesc, isValidCtg, isValidSalary };
+// };
 
 // Validations
 const descValidation = (desc) => {
@@ -50,4 +33,10 @@ const salaryValidation = (salary) => {
   if (salary <= 0) return true;
 };
 
-export { expenseValidation, incomeValidation };
+export {
+  descValidation,
+  priceValidation,
+  qtyValidation,
+  salaryValidation,
+  ctgValidation,
+};
