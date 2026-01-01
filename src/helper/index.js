@@ -1,4 +1,5 @@
-import { toggleActive, toggleTheme } from './toggle';
+import { toggleActive } from './toggle';
+import { getTheme, toggleTheme } from './theme';
 import routePage from './routePage';
 
-export { toggleActive, toggleTheme, routePage };
+export { getTheme, toggleTheme, toggleActive, routePage };

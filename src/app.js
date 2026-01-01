@@ -3,7 +3,7 @@ import 'remixicon/fonts/remixicon.css';
 
 import { addExpense, deleteExpenseById } from './app/expense.js';
 import { dashboardPage, expensePage, incomePage, notFoundPage } from './pages';
-import { toggleActive, toggleTheme, routePage } from './helper';
+import { toggleActive, getTheme, toggleTheme, routePage } from './helper';
 import { navbar, sidebar, text, link, popup } from './components';
 import { socmed } from './constants';
 
@@ -57,6 +57,7 @@ const headerEl = document.querySelector('#header');
 const sidebarEl = document.querySelector('#sidebar');
 const contentEl = document.querySelector('#content');
 const popupMessage = document.querySelector('#popupMessage');
+const iconTheme = document.querySelector('#toggle i');
 
 // Render
 const render = (path) => {
@@ -64,10 +65,30 @@ const render = (path) => {
   toggleActive(path);
 };
 
+const setTheme = (theme) => {
+  document.documentElement.dataset.theme = theme ? theme : getTheme();
+
+  if (document.documentElement.dataset.theme === 'light') {
+    iconTheme.classList.add('ri-moon-clear-fill');
+    iconTheme.classList.remove('ri-sun-fill');
+
+    iconTheme.classList.add('text-violet-800');
+    iconTheme.classList.remove('text-amber-400');
+  }
+
+  if (document.documentElement.dataset.theme === 'dark') {
+    iconTheme.classList.remove('ri-moon-clear-fill');
+    iconTheme.classList.add('ri-sun-fill');
+
+    iconTheme.classList.remove('text-violet-800');
+    iconTheme.classList.add('text-amber-400');
+  }
+};
+
 // Initial page
 window.addEventListener('load', () => {
   render(location.pathname);
-  toggleTheme();
+  setTheme();
 });
 
 // Functionalities in header
@@ -76,7 +97,8 @@ headerEl.addEventListener('click', (e) => {
   const toggle = e.target.closest('#toggle');
   if (toggle) {
     e.preventDefault();
-    toggleTheme();
+    let currentTheme = toggleTheme(document.documentElement.dataset.theme);
+    setTheme(currentTheme);
   }
 });
 
