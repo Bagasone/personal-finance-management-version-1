@@ -17,8 +17,9 @@ const getTotalDailyExpense = () =>
 
 // Add new expense
 const postExpense = (data) => {
-  dailyExpense.push(data);
-  return saveDailyExpense(dailyExpense);
+  const newDailyExpense = dailyExpense.slice();
+  newDailyExpense.push(data);
+  return saveDailyExpense(newDailyExpense);
 };
 
 const deleteExpense = (id) => {
