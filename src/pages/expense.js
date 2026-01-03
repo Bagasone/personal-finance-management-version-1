@@ -1,4 +1,4 @@
-import { status, form, lists, modal } from '../components';
+import { status, form, lists } from '../components';
 import {
   getDailyExpense,
   getTotalDailyExpense,
@@ -21,8 +21,6 @@ const expensePage = () => {
       <h2 class="sub-title">List Expenses</h2>
       ${lists(dailyExpense, 'expense')}
     </section>
-    ${modal('modalForm')}
-    ${modal('modalConfirm')}
 `;
 };
 

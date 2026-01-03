@@ -4,7 +4,7 @@ import 'remixicon/fonts/remixicon.css';
 import { addExpense, deleteExpenseById } from './app/expense.js';
 import { dashboardPage, expensePage, incomePage, notFoundPage } from './pages';
 import { toggleActive, getTheme, toggleTheme, routePage } from './helper';
-import { navbar, sidebar, text, link, popup } from './components';
+import { navbar, sidebar, text, link, popup, modal } from './components';
 import { socmed } from './constants';
 
 // Routing pages
@@ -49,10 +49,13 @@ app.innerHTML = `
     ${text(`© Create by ${link(socmed)} with full of 💖 - 2025`)}
   </footer>
   ${popup()}
+  ${modal('modalForm')}
+  ${modal('modalConfirm')}
 </div>
 `;
 
 // Variables
+const appEl = document.querySelector('#app');
 const headerEl = document.querySelector('#header');
 const sidebarEl = document.querySelector('#sidebar');
 const contentEl = document.querySelector('#content');
@@ -113,8 +116,9 @@ sidebarEl.addEventListener('click', (e) => {
 });
 
 // Functionalities in content
-contentEl.addEventListener('click', (e) => {
+appEl.addEventListener('click', (e) => {
   const modalConfirm = document.querySelector('#modalConfirm');
+  const modalForm = document.querySelector('#modalForm');
 
   // Adding data
   const btnAdd = e.target.closest('#btn-add');
@@ -235,6 +239,12 @@ contentEl.addEventListener('click', (e) => {
   if (btnReject) {
     modalConfirm.dataset.idExpense = '';
     modalConfirm.close();
+  }
+
+  // Edit data
+  const btnEdit = e.target.closest('.btn-edit');
+  if (btnEdit) {
+    modalForm.show();
   }
 });
 
