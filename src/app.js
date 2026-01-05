@@ -115,7 +115,7 @@ sidebarEl.addEventListener('click', (e) => {
   }
 });
 
-// Functionalities in content
+// Functionalities in app
 appEl.addEventListener('click', (e) => {
   const modalConfirm = document.querySelector('#modalConfirm');
   const modalForm = document.querySelector('#modalForm');
@@ -245,6 +245,26 @@ appEl.addEventListener('click', (e) => {
   const btnEdit = e.target.closest('.btn-edit');
   if (btnEdit) {
     modalForm.show();
+  }
+
+  // Close modal
+  const btnClose = e.target.closest('.btn-close');
+  if (btnClose) {
+    modalForm.dataset.idExpense = '';
+    modalForm.close();
+  }
+
+  // Close modal outside the modal form
+  if (modalConfirm.open || modalForm.open) {
+    if (e.target.closest('dialog') !== e.target.closest('#modalConfirm form')) {
+      modalConfirm.close();
+      modalConfirm.dataset.idExpense = '';
+    }
+
+    if (e.target.closest('dialog') !== e.target.closest('#modalForm form')) {
+      modalForm.close();
+      modalForm.dataset.idExpense = '';
+    }
   }
 });
 
