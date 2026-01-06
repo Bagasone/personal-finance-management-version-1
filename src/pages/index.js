@@ -1,7 +1,7 @@
 // Pages
-import notFoundPage from './404';
-import dashboardPage from './dashboard';
-import expensePage from './expense';
-import incomePage from './income';
+import notFoundPage from './notFoundPage';
+import dashboardPage from './dashboardPage';
+import expensePage from './expensePage';
+import incomePage from './incomePage';
 
 export { notFoundPage, dashboardPage, expensePage, incomePage };

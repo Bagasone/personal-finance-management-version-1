@@ -1,5 +1,5 @@
 // Route pages
-function routePage(mainElement, routes, path = '/') {
+function renderPage(mainElement, routes, path = '/') {
   if (window.location.pathname !== path) {
     // Save route in window history
     window.history.pushState({}, path, window.location.origin + path);
@@ -15,4 +15,4 @@ function routePage(mainElement, routes, path = '/') {
     : routes['/404']());
 }
 
-export default routePage;
+export default renderPage;

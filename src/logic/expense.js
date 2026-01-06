@@ -2,26 +2,22 @@ import {
   getDailyExpense,
   postExpense,
   deleteExpense,
-} from '../data/expenseStorage';
+} from '../storage/expenseStorage';
+
 import {
   descValidation,
   priceValidation,
   qtyValidation,
   ctgValidation,
-} from '../helper/validation';
+} from './validation';
 
 const expenseValidation = ({ desc, ctg, price, qty }) => {
   let validationResult = {
-    isValidDesc: true,
-    isValidPrice: true,
-    isValidQty: true,
-    isValidCtg: true,
+    isValidDesc: descValidation(desc),
+    isValidPrice: priceValidation(price),
+    isValidQty: qtyValidation(qty),
+    isValidCtg: ctgValidation(ctg),
   };
-
-  if (descValidation(desc)) validationResult.isValidDesc = false;
-  if (ctgValidation(ctg)) validationResult.isValidCtg = false;
-  if (priceValidation(price)) validationResult.isValidPrice = false;
-  if (qtyValidation(qty)) validationResult.isValidQty = false;
 
   return validationResult;
 };
@@ -40,21 +36,14 @@ const addExpense = ({ desc, ctg, price, qty }) => {
     updatedAt: now,
   };
 
-  const { isValidDesc, isValidCtg, isValidPrice, isValidQty } =
-    expenseValidation(newExpense);
+  const validationResult = expenseValidation(newExpense);
 
-  if (isValidDesc && isValidCtg && isValidPrice && isValidQty) {
-    const isStoreSuccess = postExpense(newExpense);
-    return {
-      isValidDesc,
-      isValidCtg,
-      isValidPrice,
-      isValidQty,
-      isStoreSuccess,
-    };
+  for (let key in validationResult) {
+    if (!validationResult[key].valid) return validationResult;
   }
 
-  return { isValidDesc, isValidCtg, isValidPrice, isValidQty };
+  const isStoreSuccess = postExpense(newExpense);
+  return { ...validationResult, isStoreSuccess };
 };
 
 const findExpenseById = (id) => {

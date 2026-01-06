@@ -2,7 +2,7 @@
 import { icon } from '../components';
 
 // Data
-import { user } from '../data/data.js';
+import { user } from '../storage/userStorage';
 
 const navbar = () => {
   return `

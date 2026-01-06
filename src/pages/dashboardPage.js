@@ -2,8 +2,8 @@ import { balanceStatus, incomeStatus, expenseStatus } from '../constants';
 import {
   getDailyExpense,
   getTotalDailyExpense,
-} from '../data/expenseStorage.js';
-import { getDailyIncome } from '../data/incomeStorage.js';
+} from '../storage/expenseStorage.js';
+import { getDailyIncome } from '../storage/incomeStorage.js';
 import { status, lists } from '../components';
 
 const dashboardPage = () => {

@@ -1,6 +1,6 @@
 import { status, form, lists } from '../components';
 import { btnAdd, incomeForm, incomeStatus } from '../constants';
-import { getDailyIncome } from '../data/incomeStorage';
+import { getDailyIncome } from '../storage/incomeStorage';
 
 const incomePage = () => {
   const dailyIncome = getDailyIncome();

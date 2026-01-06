@@ -2,7 +2,7 @@ import { status, form, lists } from '../components';
 import {
   getDailyExpense,
   getTotalDailyExpense,
-} from '../data/expenseStorage.js';
+} from '../storage/expenseStorage.js';
 import { btnAdd, expenseForm, expenseStatus } from '../constants';
 
 const expensePage = () => {

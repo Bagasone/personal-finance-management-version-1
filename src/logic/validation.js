@@ -14,23 +14,43 @@
 
 // Validations
 const descValidation = (desc) => {
-  if (desc.trim() === '') return true;
+  if (desc.trim() === '') {
+    return { valid: false, message: 'Description is empty' };
+  } else {
+    return { valid: true };
+  }
 };
 
 const priceValidation = (price) => {
-  if (price <= 0) return true;
+  if (price <= 0) {
+    return { valid: false, message: 'Price is less or equal to 0' };
+  } else {
+    return { valid: true };
+  }
 };
 
 const qtyValidation = (qty) => {
-  if (qty <= 0) return true;
+  if (qty <= 0) {
+    return { valid: false, message: 'Quantity is less or equal to 0' };
+  } else {
+    return { valid: true };
+  }
 };
 
 const ctgValidation = (ctg) => {
-  if (ctg.trim() === '') return true;
+  if (ctg.trim() === '') {
+    return { valid: false, message: 'Category is empty' };
+  } else {
+    return { valid: true };
+  }
 };
 
 const salaryValidation = (salary) => {
-  if (salary <= 0) return true;
+  if (salary <= 0) {
+    return { valid: false, message: 'Salary is less or equal to 0' };
+  } else {
+    return { valid: true };
+  }
 };
 
 export {

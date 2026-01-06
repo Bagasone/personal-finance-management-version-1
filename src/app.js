@@ -1,9 +1,9 @@
 import './app.css';
 import 'remixicon/fonts/remixicon.css';
 
-import { addExpense, deleteExpenseById } from './app/expense.js';
+import { addExpense, deleteExpenseById } from './logic/expense.js';
 import { dashboardPage, expensePage, incomePage, notFoundPage } from './pages';
-import { toggleActive, getTheme, toggleTheme, routePage } from './helper';
+import { toggleActive, getTheme, toggleTheme, renderPage } from './ui';
 import { navbar, sidebar, text, link, popup, modal } from './components';
 import { socmed } from './constants';
 
@@ -64,7 +64,7 @@ const iconTheme = document.querySelector('#toggle i');
 
 // Render
 const render = (path) => {
-  routePage(contentEl, routes, path);
+  renderPage(contentEl, routes, path);
   toggleActive(path);
 };
 
@@ -148,10 +148,10 @@ appEl.addEventListener('click', (e) => {
       } = addExpense(rawExpense);
 
       if (
-        isValidDesc &&
-        isValidPrice &&
-        isValidQty &&
-        isValidCtg &&
+        isValidDesc.valid &&
+        isValidPrice.valid &&
+        isValidQty.valid &&
+        isValidCtg.valid &&
         isStoreSuccess
       ) {
         render(location.pathname);
@@ -166,19 +166,19 @@ appEl.addEventListener('click', (e) => {
         }, 3000);
         clearTimeout();
       } else {
-        isValidDesc
+        isValidDesc.valid
           ? descInput.classList.remove('invalid')
           : descInput.classList.add('invalid');
 
-        isValidPrice
+        isValidPrice.valid
           ? priceInput.classList.remove('invalid')
           : priceInput.classList.add('invalid');
 
-        isValidCtg
+        isValidCtg.valid
           ? ctgInput.classList.remove('invalid')
           : ctgInput.classList.add('invalid');
 
-        isValidQty
+        isValidQty.value
           ? qtyInput.classList.remove('invalid')
           : qtyInput.classList.add('invalid');
       }
