@@ -6,4 +6,4 @@ const toggleActive = (path) => {
   });
 };
 
-export { toggleActive };
+export default toggleActive;

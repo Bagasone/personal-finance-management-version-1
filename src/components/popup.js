@@ -1,7 +1,7 @@
 import { text } from '../components';
-const popup = () => {
+const popUp = () => {
   return `
-    <div id="popupMessage" class="
+    <div id="popUp" class="
         fixed -bottom-full right-[5%] z-1
         flex-col justify-between items-center gap-5
         bg-gray-100 frame frame-md px-5 py-3">
@@ -10,4 +10,4 @@ const popup = () => {
 `;
 };
 
-export default popup;
+export default popUp;

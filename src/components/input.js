@@ -10,7 +10,7 @@ const input = ({ label, type, id, placeholder }) => {
         class="
         text-sm frame frame-md px-3 py-1
         placeholder:text-gray-400
-        dark:placeholder:text-gray-300
+        dark:placeholder:text-gray-600
         lg:text-base xl:text-lg 2xl:text-xl
         md:py-1.5 lg:py-2 xl:py-2.5 2xl:py-3
         md:px-3.5 lg:px-4 xl:px-4.5 2xl:px-5"/>

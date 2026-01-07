@@ -14,7 +14,8 @@ const select = ({ label, id, categories }) => {
                 text-sm bg-gray-300 text-gray-500 capitalize px-3 py-1
                 lg:text-base xl:text-lg 2xl:text-xl
                 md:py-1.5 lg:py-2 xl:py-2.5 2xl:py-3
-                md:px-3.5 lg:px-4 xl:px-4.5 2xl:px-5">
+                md:px-3.5 lg:px-4 xl:px-4.5 2xl:px-5
+                darK:text-gray-600">
                 Select Category
             </option>
             ${categories.map((ctg) => option(ctg)).join('')}
