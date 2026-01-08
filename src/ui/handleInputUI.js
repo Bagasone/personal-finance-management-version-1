@@ -1,16 +1,22 @@
-const handleExpenseInputUI = (
-  { descInput, priceInput, qtyInput, ctgInput },
-  { isValidDesc, isValidPrice, isValidCtg, isValidQty }
-) => {
+import { getExpenseFormInput, getIncomeFormInput } from './domVar';
+
+const handleExpenseInputUI = ({
+  isValidDesc,
+  isValidPrice,
+  isValidCtg,
+  isValidQty,
+}) => {
+  const { descInput, priceInput, qtyInput, ctgInput } = getExpenseFormInput();
+
   isValidDesc.valid
     ? descInput.classList.remove('invalid')
     : descInput.classList.add('invalid');
 
-  isValidPrice.valid
+  isValidPrice?.valid
     ? priceInput.classList.remove('invalid')
     : priceInput.classList.add('invalid');
 
-  isValidCtg.valid
+  isValidCtg?.valid
     ? ctgInput.classList.remove('invalid')
     : ctgInput.classList.add('invalid');
 
@@ -19,10 +25,9 @@ const handleExpenseInputUI = (
     : qtyInput.classList.add('invalid');
 };
 
-const handleIncomeInputUI = (
-  { descInput, salaryInput, ctgInput },
-  { isValidDesc, isValidSalary, isValidCtg }
-) => {
+const handleIncomeInputUI = ({ isValidDesc, isValidSalary, isValidCtg }) => {
+  const { descInput, ctgInput, salaryInput } = getIncomeFormInput();
+
   isValidDesc.valid
     ? descInput.classList.remove('invalid')
     : descInput.classList.add('invalid');

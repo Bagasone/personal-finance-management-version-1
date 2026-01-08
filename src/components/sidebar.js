@@ -6,7 +6,7 @@ import { links } from '../constants';
 
 const sidebar = () => {
   return `
-    <aside class="
+    <aside id="sidebar" class="
         fixed bottom-0 left-0 px-6 py-5
         flex justify-around md:flex-col bg-gray-100
         transition-all duration-300 ease-in-out

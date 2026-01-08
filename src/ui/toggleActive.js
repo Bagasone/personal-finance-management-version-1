@@ -1,5 +1,9 @@
+import { getLinksUI } from './domVar';
+
 const toggleActive = (path) => {
-  document.querySelectorAll('.link').forEach((e) => {
+  const { linksEl } = getLinksUI();
+
+  linksEl.forEach((e) => {
     e.getAttribute('href') === path
       ? e.classList.add('active')
       : e.classList.remove('active');

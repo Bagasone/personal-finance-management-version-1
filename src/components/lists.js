@@ -24,7 +24,7 @@ const lists = (data, type) => {
 
 const list = ({ desc, ctg, date, salary, price, qty, id }) => {
   return `
-    <li data-id-expense="${id}" class="
+    <li data-item-id="${id}" class="
       min-w-full min-h-20 py-1.5 px-2 rounded-xl overflow-hidden bg-gray-200
       grid grid-cols-12 grid-rows-1 items-center gap-3
       transition-all duration-300 ease-in-out
@@ -36,7 +36,7 @@ const list = ({ desc, ctg, date, salary, price, qty, id }) => {
       </div>
       <div class="flex flex-col col-span-5 xs:col-span-4 lg:col-span-5">
         <h3 class="
-          max-w-[10ch] 
+          max-w-[10ch]
           text-base text-ellipsis overflow-hidden text-nowrap font-semibold
           md:max-w-[15ch] lg:max-w-[20ch] xl:max-w-[25ch]
           md:text-lg lg:text-xl 2xl:text-2xl">

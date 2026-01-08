@@ -1,12 +1,15 @@
+import { getIconThemeUI } from './domVar';
+
 const getTheme = () => JSON.parse(localStorage.getItem('theme')) || 'light';
 
-const toggleTheme = (currentTheme) => {
-  let theme = currentTheme === 'light' ? 'dark' : 'light';
+const toggleTheme = () => {
+  let theme = getTheme() === 'light' ? 'dark' : 'light';
   localStorage.setItem('theme', JSON.stringify(theme));
-  return theme;
+  setTheme(theme);
 };
 
 const setTheme = (theme) => {
+  const { iconThemeEl } = getIconThemeUI();
   document.documentElement.dataset.theme = theme ? theme : getTheme();
 
   if (document.documentElement.dataset.theme === 'light') {
@@ -26,4 +29,4 @@ const setTheme = (theme) => {
   }
 };
 
-export { getTheme, toggleTheme };
+export { getTheme, setTheme, toggleTheme };

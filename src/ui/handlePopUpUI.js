@@ -1,25 +1,16 @@
-const handlePopUpSuccesUI = (el, label) => {
-  el.classList.add('success');
-  el.classList.add('animate-popup');
-  el.querySelector('span').innerText = label;
+import { getPopUpUI } from './domVar';
+
+const handlePopUpUI = (label, type) => {
+  const { popUpEl } = getPopUpUI();
+  popUpEl.classList.add(type);
+  popUpEl.classList.add('animate-popup');
+  popUpEl.querySelector('span').innerText = label;
   setTimeout(() => {
-    el.classList.remove('success');
-    el.classList.remove('animate-popup');
-    el.querySelector('span').innerText = '';
+    popUpEl.classList.remove(type);
+    popUpEl.classList.remove('animate-popup');
+    popUpEl.querySelector('span').innerText = '';
   }, 3000);
   clearTimeout();
 };
 
-const handePopUpFailUI = (el, label) => {
-  el.classList.add('fail');
-  el.classList.add('animate-popup');
-  el.querySelector('span').innerText = label;
-  setTimeout(() => {
-    el.classList.remove('fail');
-    el.classList.remove('animate-popup');
-    el.querySelector('span').innerText = '';
-  }, 3000);
-  clearTimeout();
-};
-
-export { handlePopUpSuccesUI, handePopUpFailUI };
+export default handlePopUpUI;

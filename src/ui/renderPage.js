@@ -1,18 +1,22 @@
+import pageRoutes from '../pages';
+import { getSectionUI } from './domVar';
+
 // Route pages
-function renderPage(mainElement, routes, path = '/') {
+function renderPage(path = '/') {
+  const { contentEl } = getSectionUI();
   if (window.location.pathname !== path) {
     // Save route in window history
     window.history.pushState({}, path, window.location.origin + path);
 
-    setTimeout(() => mainElement.classList.add('animate-slide'), 0);
+    setTimeout(() => contentEl.classList.add('animate-slide'), 0);
   }
 
-  mainElement.classList.remove('animate-slide');
+  contentEl.classList.remove('animate-slide');
 
   // Return the correct page based on current pathname
-  return (mainElement.innerHTML = routes[path]
-    ? routes[path]()
-    : routes['/404']());
+  return (contentEl.innerHTML = pageRoutes[path]
+    ? pageRoutes[path]()
+    : pageRoutes['/404']());
 }
 
 export default renderPage;

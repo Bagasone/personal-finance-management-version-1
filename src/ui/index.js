@@ -1,11 +1,5 @@
 import { navbar, sidebar, text, link, popUp, modal } from '../components';
 import { socmed } from '../constants';
-import initUI from './domVar.js';
-
-// State UI
-import toggleActive from './toggleActive.js';
-import { toggleTheme, getTheme } from './toggleTheme.js';
-import renderPage from './renderPage.js';
 
 const renderUI = () => `
 <div class="
@@ -45,4 +39,3 @@ const renderUI = () => `
 `;
 
 export default renderUI;
-export { initUI, toggleActive, toggleTheme, getTheme, renderPage };

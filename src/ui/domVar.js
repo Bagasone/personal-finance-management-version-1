@@ -1,20 +1,3 @@
-const initUI = () => {
-  // Variables
-  const appEl = document.querySelector('#app');
-  const headerEl = document.querySelector('#header');
-  const sidebarEl = document.querySelector('#sidebar');
-  const contentEl = document.querySelector('#content');
-  const iconThemeEl = document.querySelector('#toggle i');
-
-  return {
-    appEl,
-    headerEl,
-    sidebarEl,
-    contentEl,
-    iconThemeEl,
-  };
-};
-
 const getExpenseFormInput = () => ({
   descInput: document.querySelector('#desc'),
   ctgInput: document.querySelector('#ctg'),
@@ -37,5 +20,24 @@ const getModalUI = () => ({
   modalFormEl: document.querySelector('#modalForm'),
 });
 
-export default initUI;
-export { getExpenseFormInput, getIncomeFormInput, getPopUpUI, getModalUI };
+const getSectionUI = () => ({
+  contentEl: document.querySelector('#content'),
+});
+
+const getLinksUI = () => ({
+  linksEl: document.querySelectorAll('.link'),
+});
+
+const getIconThemeUI = () => ({
+  iconThemeEl: document.querySelector('#btn-theme i'),
+});
+
+export {
+  getExpenseFormInput,
+  getIncomeFormInput,
+  getIconThemeUI,
+  getPopUpUI,
+  getModalUI,
+  getSectionUI,
+  getLinksUI,
+};
