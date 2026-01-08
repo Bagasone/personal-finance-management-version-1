@@ -36,7 +36,7 @@ const addExpense = ({ desc, ctg, price, qty }) => {
     updatedAt: now,
   };
 
-  const validationResult = expenseValidation(newExpense);
+  const validationResult = expenseValidation({ desc, ctg, price, qty });
 
   for (let key in validationResult) {
     if (!validationResult[key].valid) return validationResult;

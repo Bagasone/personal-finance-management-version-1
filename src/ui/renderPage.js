@@ -4,6 +4,7 @@ import { getSectionUI } from './domVar';
 // Route pages
 function renderPage(path = '/') {
   const { contentEl } = getSectionUI();
+
   if (window.location.pathname !== path) {
     // Save route in window history
     window.history.pushState({}, path, window.location.origin + path);

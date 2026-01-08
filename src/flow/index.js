@@ -1,7 +1,7 @@
 import { addExpenseFlow, confirmDeleteExpenseFlow } from './expenseFlow';
 
-import { getModalUI } from '../ui/domVar';
 import handlePopUpUI from '../ui/handlePopUpUI';
+import { openModalConfirm } from '../ui/handleModalUI';
 
 const addDataFlow = () => {
   const flowAddData = {
@@ -9,19 +9,12 @@ const addDataFlow = () => {
   };
 
   const flow = flowAddData[location.pathname];
-  if (flow) flow();
+  if (flow) return flow();
 };
 
 const deleteFlow = ({ id, entityName }) => {
-  const { modalConfirmEl } = getModalUI();
-
-  if (!id) {
-    handlePopUpUI(`${entityName} tidak ditemukan!`, 'fail');
-    return;
-  }
-
-  modalConfirmEl.dataset.id = id;
-  modalConfirmEl.show();
+  if (!id) return handlePopUpUI(`${entityName} tidak ditemukan!`, 'fail');
+  openModalConfirm(id);
 };
 
 const confirmDeleteFlow = () => {
@@ -30,27 +23,7 @@ const confirmDeleteFlow = () => {
   };
 
   const flow = flowConfirmDelete[location.pathname];
-  if (flow) flow();
+  if (flow) return flow();
 };
 
-const rejectDeleteFlow = () => {
-  const { modalConfirmEl } = getModalUI();
-
-  modalConfirmEl.dataset.id = '';
-  modalConfirmEl.close();
-};
-
-const closeModalFormFlow = () => {
-  const { modalFormEl } = getModalUI();
-
-  modalFormEl.dataset.id = '';
-  modalFormEl.close();
-};
-
-export {
-  addDataFlow,
-  deleteFlow,
-  confirmDeleteFlow,
-  rejectDeleteFlow,
-  closeModalFormFlow,
-};
+export { addDataFlow, deleteFlow, confirmDeleteFlow };

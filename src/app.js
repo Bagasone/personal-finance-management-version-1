@@ -5,13 +5,8 @@ import renderUI from './ui';
 import renderPage from './ui/renderPage.js';
 import toggleActive from './ui/toggleActive.js';
 import { toggleTheme, setTheme } from './ui/toggleTheme.js';
-import {
-  addDataFlow,
-  closeModalFormFlow,
-  confirmDeleteFlow,
-  deleteFlow,
-  rejectDeleteFlow,
-} from './flow/index.js';
+import { addDataFlow, confirmDeleteFlow, deleteFlow } from './flow/index.js';
+import { closeModalConfirm, closeModalForm } from './ui/handleModalUI.js';
 
 // Root element
 const appEl = document.getElementById('app');
@@ -59,13 +54,13 @@ appEl.addEventListener('click', (e) => {
   const btnAcceptDelete = e.target.closest('#btn-accept');
   if (btnAcceptDelete) confirmDeleteFlow();
 
-  // Reject delete data
+  // Reject delete data / Close modal confirm
   const btnRejectDelete = e.target.closest('#btn-reject');
-  if (btnRejectDelete) rejectDeleteFlow();
+  if (btnRejectDelete) closeModalConfirm();
 
-  // // Close modal form
-  // const btnClose = e.target.closest('.btn-close');
-  // if (btnClose) closeModalFormFlow();
+  // Close modal form
+  const btnCloseModalForm = e.target.closest('#btn-close');
+  if (btnCloseModalForm) closeModalForm();
 });
 
 // Save the history of the page

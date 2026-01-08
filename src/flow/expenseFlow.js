@@ -1,8 +1,9 @@
-import { getExpenseFormInput, getModalUI } from '../ui/domVar';
-import { handleExpenseInputUI } from '../ui/handleInputUI';
-import handlePopUpUI from '../ui/handlePopUpUI';
-import { addExpense, deleteExpenseById } from '../logic/expense';
 import renderPage from '../ui/renderPage';
+import handlePopUpUI from '../ui/handlePopUpUI';
+import { getExpenseFormInput } from '../ui/domVar';
+import { handleExpenseInputUI } from '../ui/handleInputUI';
+import { closeModalConfirm, getModalConfirmId } from '../ui/handleModalUI';
+import { addExpense, deleteExpenseById } from '../logic/expense';
 
 const addExpenseFlow = () => {
   const { descInput, priceInput, qtyInput, ctgInput } = getExpenseFormInput();
@@ -23,14 +24,11 @@ const addExpenseFlow = () => {
 };
 
 const confirmDeleteExpenseFlow = () => {
-  const { modalConfirmEl } = getModalUI();
-
-  const id = modalConfirmEl.dataset.id;
+  const id = getModalConfirmId();
   const isDeleted = deleteExpenseById(id);
 
   if (isDeleted) {
-    modalConfirmEl.dataset.id = '';
-    modalConfirmEl.close();
+    closeModalConfirm();
     renderPage(location.pathname);
     handlePopUpUI('Expense berhasil dihapus!', 'fail');
   } else {

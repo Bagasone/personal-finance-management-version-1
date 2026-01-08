@@ -30,7 +30,7 @@ const renderUI = () => `
     min-w-full pt-5 text-center
     max-md:pb-16
     md:pl-22 lg:pl-24 xl:pl-26 2xl:pl-28">
-    ${text(`© Create by ${link(socmed)} with full of 💖 - 2025`)}
+    ${text(`© Create by ${link(socmed)} with full of 💖 - 2026`)}
   </footer>
   ${popUp()}
   ${modal('modalForm')}
