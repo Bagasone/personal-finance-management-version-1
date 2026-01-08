@@ -5,7 +5,13 @@ import renderUI from './ui';
 import renderPage from './ui/renderPage.js';
 import toggleActive from './ui/toggleActive.js';
 import { toggleTheme, setTheme } from './ui/toggleTheme.js';
-import { addDataFlow, confirmDeleteFlow, deleteFlow } from './flow/index.js';
+import {
+  addDataFlow,
+  confirmDeleteFlow,
+  deleteFlow,
+  editFlow,
+  updateFlow,
+} from './flow/index.js';
 import { closeModalConfirm, closeModalForm } from './ui/handleModalUI.js';
 
 // Root element
@@ -44,15 +50,29 @@ appEl.addEventListener('click', (e) => {
   // Delete data flow
   const btnDelete = e.target.closest('.btn-delete');
   if (btnDelete) {
-    // Delete expense
     const id = btnDelete.closest('li').dataset.itemId;
     const entityName = location.pathname.slice(1);
     deleteFlow({ id, entityName });
   }
 
+  // Edit data flow
+  const btnEdit = e.target.closest('.btn-edit');
+  if (btnEdit) {
+    const id = btnEdit.closest('li').dataset.itemId;
+    const entityName = location.pathname.slice(1);
+    editFlow({ id, entityName });
+  }
+
   // Confirmation delete data
   const btnAcceptDelete = e.target.closest('#btn-accept');
   if (btnAcceptDelete) confirmDeleteFlow();
+
+  // Update data
+  const btntUpdate = e.target.closest('#btn-update');
+  if (btntUpdate) {
+    e.preventDefault();
+    updateFlow();
+  }
 
   // Reject delete data / Close modal confirm
   const btnRejectDelete = e.target.closest('#btn-reject');

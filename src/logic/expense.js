@@ -2,6 +2,7 @@ import {
   getDailyExpense,
   postExpense,
   deleteExpense,
+  putExpense,
 } from '../storage/expenseStorage';
 
 import {
@@ -60,4 +61,25 @@ const deleteExpenseById = (id) => {
   }
 };
 
-export { addExpense, findExpenseById, deleteExpenseById };
+const updateExpense = (id, { desc, price, qty, ctg }) => {
+  const now = Date.now();
+
+  const newExpense = {
+    desc: String(desc),
+    ctg: String(ctg),
+    price: Number(price),
+    qty: Number(qty),
+    updatedAt: now,
+  };
+
+  const validationResult = expenseValidation({ desc, ctg, price, qty });
+
+  for (let key in validationResult) {
+    if (!validationResult[key].valid) return validationResult;
+  }
+
+  const isStoreSuccess = putExpense(id, newExpense);
+  return { ...validationResult, isStoreSuccess };
+};
+
+export { addExpense, findExpenseById, deleteExpenseById, updateExpense };

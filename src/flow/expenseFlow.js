@@ -1,9 +1,17 @@
 import renderPage from '../ui/renderPage';
 import handlePopUpUI from '../ui/handlePopUpUI';
-import { getExpenseFormInput } from '../ui/domVar';
-import { handleExpenseInputUI } from '../ui/handleInputUI';
-import { closeModalConfirm, getModalConfirmId } from '../ui/handleModalUI';
-import { addExpense, deleteExpenseById } from '../logic/expense';
+import { getExpenseFormInput, getExpenseModalFormInput } from '../ui/domVar';
+import {
+  handleExpenseInputUI,
+  handleModalExpenseInputUI,
+} from '../ui/handleInputUI';
+import {
+  closeModalConfirm,
+  closeModalForm,
+  getModalConfirmId,
+  getModalFormId,
+} from '../ui/handleModalUI';
+import { addExpense, deleteExpenseById, updateExpense } from '../logic/expense';
 
 const addExpenseFlow = () => {
   const { descInput, priceInput, qtyInput, ctgInput } = getExpenseFormInput();
@@ -36,4 +44,26 @@ const confirmDeleteExpenseFlow = () => {
   }
 };
 
-export { addExpenseFlow, confirmDeleteExpenseFlow };
+const confirmUpdateExpenseFlow = () => {
+  const { descInput, priceInput, qtyInput, ctgInput } =
+    getExpenseModalFormInput();
+
+  const id = getModalFormId();
+
+  const validationResult = updateExpense(id, {
+    desc: descInput.value,
+    price: priceInput.value,
+    qty: qtyInput.value,
+    ctg: ctgInput.value,
+  });
+
+  handleModalExpenseInputUI(validationResult);
+
+  if (validationResult.isStoreSuccess) {
+    renderPage(location.pathname);
+    handlePopUpUI('Expense berhasil diperbarui!', 'success');
+    closeModalForm();
+  }
+};
+
+export { addExpenseFlow, confirmDeleteExpenseFlow, confirmUpdateExpenseFlow };

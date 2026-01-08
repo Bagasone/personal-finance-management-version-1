@@ -32,6 +32,26 @@ const getIconThemeUI = () => ({
   iconThemeEl: document.querySelector('#btn-theme i'),
 });
 
+const getExpenseModalFormInput = () => {
+  const { modalFormEl } = getModalUI();
+
+  return {
+    descInput: modalFormEl.querySelector('#desc'),
+    ctgInput: modalFormEl.querySelector('#ctg'),
+    priceInput: modalFormEl.querySelector('#price'),
+    qtyInput: modalFormEl.querySelector('#qty'),
+  };
+};
+
+const getIncomeModalFormInput = () => {
+  const { modalFormEl } = getModalUI();
+
+  return {
+    descInput: modalFormEl.querySelector('#desc'),
+    ctgInput: modalFormEl.querySelector('#ctg'),
+    salaryInput: modalFormEl.querySelector('#salary'),
+  };
+};
 export {
   getExpenseFormInput,
   getIncomeFormInput,
@@ -40,4 +60,6 @@ export {
   getModalUI,
   getSectionUI,
   getLinksUI,
+  getExpenseModalFormInput,
+  getIncomeModalFormInput,
 };

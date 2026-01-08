@@ -26,9 +26,25 @@ const postExpense = (data) => {
   return saveDailyExpense(newDailyExpense);
 };
 
+const putExpense = (id, { desc, price, qty, ctg, createdAt }) => {
+  const newDailyExpense = dailyExpense.map((item) => {
+    if (item.id === id) {
+      return { ...item, desc, price, ctg, qty, createdAt };
+    }
+  });
+
+  return saveDailyExpense(newDailyExpense);
+};
+
 const deleteExpense = (id) => {
   const newDailyExpense = dailyExpense.filter((item) => item.id !== id);
   return saveDailyExpense(newDailyExpense);
 };
 
-export { getDailyExpense, getTotalDailyExpense, postExpense, deleteExpense };
+export {
+  getDailyExpense,
+  getTotalDailyExpense,
+  postExpense,
+  deleteExpense,
+  putExpense,
+};

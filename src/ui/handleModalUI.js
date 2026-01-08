@@ -1,5 +1,8 @@
-import { modal } from '../components';
-import { getModalUI } from './domVar';
+import {
+  getExpenseModalFormInput,
+  getIncomeFormInput,
+  getModalUI,
+} from './domVar';
 
 const getModalFormId = () => {
   const { modalFormEl } = getModalUI();
@@ -13,9 +16,14 @@ const getModalConfirmId = () => {
   return id;
 };
 
-const openModalForm = (id) => {
+const openModalForm = ({ id, ...inputData }) => {
   const { modalFormEl } = getModalUI();
   modalFormEl.dataset.id = id;
+
+  for (let key in inputData) {
+    modalFormEl.querySelector(`#${key}`).value = inputData[key];
+  }
+
   modalFormEl.show();
 };
 
@@ -25,8 +33,18 @@ const openModalConfirm = (id) => {
   modalConfirmEl.show();
 };
 
-const closeModalForm = () => {
+const closeModalForm = (type) => {
   const { modalFormEl } = getModalUI();
+  const { descInput, priceInput, qtyInput, ctgInput } =
+    getExpenseModalFormInput();
+
+  // const { salaryInput } = getIncomeFormInput();
+
+  descInput.value = '';
+  priceInput.value = '';
+  qtyInput.value = '';
+  ctgInput.value = '';
+
   modalFormEl.dataset.id = '';
   modalFormEl.close();
 };
