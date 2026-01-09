@@ -26,13 +26,10 @@ const postExpense = (data) => {
   return saveDailyExpense(newDailyExpense);
 };
 
-const putExpense = (id, { desc, price, qty, ctg, createdAt }) => {
-  const newDailyExpense = dailyExpense.map((item) => {
-    if (item.id === id) {
-      return { ...item, desc, price, ctg, qty, createdAt };
-    }
-  });
-
+const putExpense = (id, { desc, price, qty, ctg, updatedAt }) => {
+  const newDailyExpense = dailyExpense.map((item) =>
+    item.id === id ? { ...item, desc, price, ctg, qty, updatedAt } : item
+  );
   return saveDailyExpense(newDailyExpense);
 };
 

@@ -1,9 +1,4 @@
-import {
-  getExpenseFormInput,
-  getExpenseModalFormInput,
-  getIncomeFormInput,
-  getIncomeModalFormInput,
-} from './domVar';
+import { getFormInput, getModalFormInput } from './domVar';
 
 const handleExpenseInputUI = ({
   isValidDesc,
@@ -11,7 +6,7 @@ const handleExpenseInputUI = ({
   isValidCtg,
   isValidQty,
 }) => {
-  const { descInput, priceInput, qtyInput, ctgInput } = getExpenseFormInput();
+  const { descInput, priceInput, qtyInput, ctgInput } = getFormInput();
 
   isValidDesc.valid
     ? descInput.classList.remove('invalid')
@@ -31,7 +26,7 @@ const handleExpenseInputUI = ({
 };
 
 const handleIncomeInputUI = ({ isValidDesc, isValidSalary, isValidCtg }) => {
-  const { descInput, ctgInput, salaryInput } = getIncomeFormInput();
+  const { descInput, ctgInput, salaryInput } = getFormInput();
 
   isValidDesc.valid
     ? descInput.classList.remove('invalid')
@@ -52,8 +47,7 @@ const handleModalExpenseInputUI = ({
   isValidCtg,
   isValidQty,
 }) => {
-  const { descInput, priceInput, qtyInput, ctgInput } =
-    getExpenseModalFormInput();
+  const { descInput, priceInput, qtyInput, ctgInput } = getModalFormInput();
 
   isValidDesc.valid
     ? descInput.classList.remove('invalid')
@@ -77,7 +71,7 @@ const handleModalIncomeInputUI = ({
   isValidSalary,
   isValidCtg,
 }) => {
-  const { descInput, ctgInput, salaryInput } = getIncomeModalFormInput();
+  const { descInput, ctgInput, salaryInput } = getModalFormInput();
 
   isValidDesc.valid
     ? descInput.classList.remove('invalid')

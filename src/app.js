@@ -5,6 +5,8 @@ import renderUI from './ui';
 import renderPage from './ui/renderPage.js';
 import toggleActive from './ui/toggleActive.js';
 import { toggleTheme, setTheme } from './ui/toggleTheme.js';
+import { closeModalConfirm, closeModalForm } from './ui/handleModalUI.js';
+
 import {
   addDataFlow,
   confirmDeleteFlow,
@@ -12,7 +14,7 @@ import {
   editFlow,
   updateFlow,
 } from './flow/index.js';
-import { closeModalConfirm, closeModalForm } from './ui/handleModalUI.js';
+import switchPage from './ui/switchPage.js';
 
 // Root element
 const appEl = document.getElementById('app');
@@ -29,12 +31,7 @@ window.addEventListener('load', () => {
 appEl.addEventListener('click', (e) => {
   // Switch between page
   const link = e.target.closest('#sidebar .link');
-  if (link) {
-    e.preventDefault();
-    const path = link.getAttribute('href');
-    renderPage(path);
-    toggleActive(path);
-  }
+  if (link) switchPage(e, link);
 
   // Toggle theme
   const btnTheme = e.target.closest('#btn-theme');
@@ -42,26 +39,15 @@ appEl.addEventListener('click', (e) => {
 
   // Add data flow
   const btnAdd = e.target.closest('#btn-add');
-  if (btnAdd) {
-    e.preventDefault();
-    addDataFlow(location.pathname);
-  }
+  if (btnAdd) addDataFlow(e);
 
   // Delete data flow
   const btnDelete = e.target.closest('.btn-delete');
-  if (btnDelete) {
-    const id = btnDelete.closest('li').dataset.itemId;
-    const entityName = location.pathname.slice(1);
-    deleteFlow({ id, entityName });
-  }
+  if (btnDelete) deleteFlow(btnDelete);
 
   // Edit data flow
   const btnEdit = e.target.closest('.btn-edit');
-  if (btnEdit) {
-    const id = btnEdit.closest('li').dataset.itemId;
-    const entityName = location.pathname.slice(1);
-    editFlow({ id, entityName });
-  }
+  if (btnEdit) editFlow(btnEdit);
 
   // Confirmation delete data
   const btnAcceptDelete = e.target.closest('#btn-accept');
@@ -69,10 +55,7 @@ appEl.addEventListener('click', (e) => {
 
   // Update data
   const btntUpdate = e.target.closest('#btn-update');
-  if (btntUpdate) {
-    e.preventDefault();
-    updateFlow();
-  }
+  if (btntUpdate) updateFlow(e);
 
   // Reject delete data / Close modal confirm
   const btnRejectDelete = e.target.closest('#btn-reject');
@@ -84,4 +67,7 @@ appEl.addEventListener('click', (e) => {
 });
 
 // Save the history of the page
-window.addEventListener('popstate', () => renderPage(location.pathname));
+window.addEventListener('popstate', () => {
+  renderPage(location.pathname);
+  toggleActive(location.pathname);
+});

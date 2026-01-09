@@ -1,14 +1,9 @@
-const getExpenseFormInput = () => ({
+const getFormInput = () => ({
   descInput: document.querySelector('#desc'),
   ctgInput: document.querySelector('#ctg'),
   priceInput: document.querySelector('#price'),
-  qtyInput: document.querySelector('#qty'),
-});
-
-const getIncomeFormInput = () => ({
-  descInput: document.querySelector('#desc'),
-  ctgInput: document.querySelector('#ctg'),
   salaryInput: document.querySelector('#salary'),
+  qtyInput: document.querySelector('#qty'),
 });
 
 const getPopUpUI = () => ({
@@ -32,7 +27,7 @@ const getIconThemeUI = () => ({
   iconThemeEl: document.querySelector('#btn-theme i'),
 });
 
-const getExpenseModalFormInput = () => {
+const getModalFormInput = () => {
   const { modalFormEl } = getModalUI();
 
   return {
@@ -40,26 +35,16 @@ const getExpenseModalFormInput = () => {
     ctgInput: modalFormEl.querySelector('#ctg'),
     priceInput: modalFormEl.querySelector('#price'),
     qtyInput: modalFormEl.querySelector('#qty'),
-  };
-};
-
-const getIncomeModalFormInput = () => {
-  const { modalFormEl } = getModalUI();
-
-  return {
-    descInput: modalFormEl.querySelector('#desc'),
-    ctgInput: modalFormEl.querySelector('#ctg'),
     salaryInput: modalFormEl.querySelector('#salary'),
   };
 };
+
 export {
-  getExpenseFormInput,
-  getIncomeFormInput,
+  getFormInput,
   getIconThemeUI,
   getPopUpUI,
   getModalUI,
   getSectionUI,
   getLinksUI,
-  getExpenseModalFormInput,
-  getIncomeModalFormInput,
+  getModalFormInput,
 };

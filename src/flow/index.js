@@ -5,15 +5,12 @@ import {
 } from './expenseFlow';
 
 import handlePopUpUI from '../ui/handlePopUpUI';
-import {
-  getModalFormId,
-  openModalConfirm,
-  openModalForm,
-} from '../ui/handleModalUI';
+import { openModalConfirm, openModalForm } from '../ui/handleModalUI';
 import { findExpenseById } from '../logic/expense';
-import { getModalUI } from '../ui/domVar';
 
-const addDataFlow = () => {
+const addDataFlow = (e) => {
+  e.preventDefault();
+
   const flowAddData = {
     '/expense': addExpenseFlow,
   };
@@ -22,12 +19,18 @@ const addDataFlow = () => {
   if (flow) return flow();
 };
 
-const deleteFlow = ({ id, entityName }) => {
+const deleteFlow = (targetedEl) => {
+  const id = targetedEl.closest('li').dataset.itemId;
+  const entityName = location.pathname.slice(1);
+
   if (!id) return handlePopUpUI(`${entityName} tidak ditemukan!`, 'fail');
   openModalConfirm(id);
 };
 
-const editFlow = ({ id, entityName }) => {
+const editFlow = (targetedEl) => {
+  const id = targetedEl.closest('li').dataset.itemId;
+  const entityName = location.pathname.slice(1);
+
   const flowEditData = {
     '/expense': findExpenseById,
   };
@@ -37,11 +40,14 @@ const editFlow = ({ id, entityName }) => {
   const flow = flowEditData[location.pathname];
   if (flow) {
     const { createdAt, updatedAt, date, ...editedData } = flow(id);
+    console.log(editedData);
     openModalForm(editedData);
   }
 };
 
-const updateFlow = () => {
+const updateFlow = (e) => {
+  e.preventDefault();
+
   const flowConfirmUpdate = {
     '/expense': confirmUpdateExpenseFlow,
   };
