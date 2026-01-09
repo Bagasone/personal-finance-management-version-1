@@ -1,17 +1,5 @@
 import { getModalUI, getModalFormInput } from './domVar';
 
-const getModalFormId = () => {
-  const { modalFormEl } = getModalUI();
-  const id = modalFormEl.dataset.id;
-  return id;
-};
-
-const getModalConfirmId = () => {
-  const { modalConfirmEl } = getModalUI();
-  const id = modalConfirmEl.dataset.id;
-  return id;
-};
-
 const openModalForm = ({ id, ...inputData }) => {
   const { modalFormEl } = getModalUI();
   modalFormEl.dataset.id = id;
@@ -51,11 +39,4 @@ const closeModalConfirm = () => {
   modalConfirmEl.close();
 };
 
-export {
-  getModalConfirmId,
-  getModalFormId,
-  openModalConfirm,
-  openModalForm,
-  closeModalConfirm,
-  closeModalForm,
-};
+export { openModalConfirm, openModalForm, closeModalConfirm, closeModalForm };

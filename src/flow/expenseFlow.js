@@ -1,18 +1,13 @@
 import renderPage from '../ui/renderPage';
 import handlePopUpUI from '../ui/handlePopUpUI';
-import { getModalFormInput, getFormInput } from '../ui/domVar';
+import { getModalFormInput, getFormInput, getModalUI } from '../ui/domVar';
 
 import {
   handleExpenseInputUI,
   handleModalExpenseInputUI,
 } from '../ui/handleInputUI';
 
-import {
-  closeModalConfirm,
-  closeModalForm,
-  getModalConfirmId,
-  getModalFormId,
-} from '../ui/handleModalUI';
+import { closeModalConfirm, closeModalForm } from '../ui/handleModalUI';
 
 import { addExpense, deleteExpenseById, updateExpense } from '../logic/expense';
 
@@ -35,7 +30,9 @@ const addExpenseFlow = () => {
 };
 
 const confirmDeleteExpenseFlow = () => {
-  const id = getModalConfirmId();
+  const { modalConfirmEl } = getModalUI();
+
+  const id = modalConfirmEl.dataset.id;
   const isDeleted = deleteExpenseById(id);
 
   if (isDeleted) {
@@ -48,10 +45,10 @@ const confirmDeleteExpenseFlow = () => {
 };
 
 const confirmUpdateExpenseFlow = () => {
+  const { modalFormEl } = getModalUI();
   const { descInput, priceInput, qtyInput, ctgInput } = getModalFormInput();
 
-  const id = getModalFormId();
-  console.log(id);
+  const id = modalFormEl.dataset.id;
 
   const validationResult = updateExpense(id, {
     desc: descInput.value,

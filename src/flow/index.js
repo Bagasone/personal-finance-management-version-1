@@ -16,14 +16,19 @@ const addDataFlow = (e) => {
   };
 
   const flow = flowAddData[location.pathname];
-  if (flow) return flow();
+  if (flow) {
+    return flow();
+  }
 };
 
 const deleteFlow = (targetedEl) => {
   const id = targetedEl.closest('li').dataset.itemId;
   const entityName = location.pathname.slice(1);
 
-  if (!id) return handlePopUpUI(`${entityName} tidak ditemukan!`, 'fail');
+  if (!id) {
+    return handlePopUpUI(`${entityName} tidak ditemukan!`, 'fail');
+  }
+
   openModalConfirm(id);
 };
 
@@ -35,13 +40,14 @@ const editFlow = (targetedEl) => {
     '/expense': findExpenseById,
   };
 
-  if (!id) return handlePopUpUI(`${entityName} tidak ditemukan`, 'fail');
+  if (!id) {
+    return handlePopUpUI(`${entityName} tidak ditemukan`, 'fail');
+  }
 
   const flow = flowEditData[location.pathname];
   if (flow) {
     const { createdAt, updatedAt, date, ...editedData } = flow(id);
-    console.log(editedData);
-    openModalForm(editedData);
+    return openModalForm(editedData);
   }
 };
 
@@ -54,7 +60,7 @@ const updateFlow = (e) => {
 
   const flow = flowConfirmUpdate[location.pathname];
   if (flow) {
-    flow();
+    return flow();
   }
 };
 
@@ -64,7 +70,9 @@ const confirmDeleteFlow = () => {
   };
 
   const flow = flowConfirmDelete[location.pathname];
-  if (flow) return flow();
+  if (flow) {
+    return flow();
+  }
 };
 
 export { addDataFlow, deleteFlow, editFlow, confirmDeleteFlow, updateFlow };

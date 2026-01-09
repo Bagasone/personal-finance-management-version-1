@@ -12,16 +12,12 @@ import {
   ctgValidation,
 } from './validation';
 
-const expenseValidation = ({ desc, ctg, price, qty }) => {
-  let validationResult = {
-    isValidDesc: descValidation(desc),
-    isValidPrice: priceValidation(price),
-    isValidQty: qtyValidation(qty),
-    isValidCtg: ctgValidation(ctg),
-  };
-
-  return validationResult;
-};
+const expenseValidation = ({ desc, ctg, price, qty }) => ({
+  isValidDesc: descValidation(desc),
+  isValidPrice: priceValidation(price),
+  isValidQty: qtyValidation(qty),
+  isValidCtg: ctgValidation(ctg),
+});
 
 const addExpense = ({ desc, ctg, price, qty }) => {
   const now = Date.now();
@@ -44,7 +40,9 @@ const addExpense = ({ desc, ctg, price, qty }) => {
   }
 
   const isStoreSuccess = postExpense(newExpense);
-  return { ...validationResult, isStoreSuccess };
+  if (isStoreSuccess) {
+    return { ...validationResult, isStoreSuccess };
+  }
 };
 
 const findExpenseById = (id) => {
@@ -56,9 +54,9 @@ const deleteExpenseById = (id) => {
   const isExpenseExist = findExpenseById(id);
   if (isExpenseExist) {
     return deleteExpense(id);
-  } else {
-    return false;
   }
+
+  return false;
 };
 
 const updateExpense = (id, { desc, price, qty, ctg }) => {
@@ -79,7 +77,9 @@ const updateExpense = (id, { desc, price, qty, ctg }) => {
   }
 
   const isStoreSuccess = putExpense(id, newExpense);
-  return { ...validationResult, isStoreSuccess };
+  if (isStoreSuccess) {
+    return { ...validationResult, isStoreSuccess };
+  }
 };
 
 export { addExpense, findExpenseById, deleteExpenseById, updateExpense };
