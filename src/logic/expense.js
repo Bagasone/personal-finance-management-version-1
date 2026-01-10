@@ -45,19 +45,16 @@ const addExpense = ({ desc, ctg, price, qty }) => {
   }
 };
 
-const findExpenseById = (id) => {
+const findEditedExpenseItemById = (id) => {
   const dailyExpense = getDailyExpense();
-  return dailyExpense.find((item) => item.id === id);
+  const { date, createdAt, updatedAt, ...item } = dailyExpense.find(
+    (item) => item.id === id
+  );
+
+  return item;
 };
 
-const deleteExpenseById = (id) => {
-  const isExpenseExist = findExpenseById(id);
-  if (isExpenseExist) {
-    return deleteExpense(id);
-  }
-
-  return false;
-};
+const deleteExpenseById = (id) => deleteExpense(id);
 
 const updateExpense = (id, { desc, price, qty, ctg }) => {
   const now = Date.now();
@@ -82,4 +79,9 @@ const updateExpense = (id, { desc, price, qty, ctg }) => {
   }
 };
 
-export { addExpense, findExpenseById, deleteExpenseById, updateExpense };
+export {
+  addExpense,
+  findEditedExpenseItemById,
+  deleteExpenseById,
+  updateExpense,
+};

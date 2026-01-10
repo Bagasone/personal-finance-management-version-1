@@ -1,11 +1,11 @@
 import { getModalUI, getModalFormInput } from './domVar';
 
-const openModalForm = ({ id, ...inputData }) => {
+const openModalForm = ({ id, ...item }) => {
   const { modalFormEl } = getModalUI();
-  modalFormEl.dataset.id = id;
+  modalFormEl.dataset.itemId = id;
 
-  for (let key in inputData) {
-    modalFormEl.querySelector(`#${key}`).value = inputData[key];
+  for (let key in item) {
+    modalFormEl.querySelector(`#${key}`).value = item[key];
   }
 
   modalFormEl.show();
@@ -13,7 +13,7 @@ const openModalForm = ({ id, ...inputData }) => {
 
 const openModalConfirm = (id) => {
   const { modalConfirmEl } = getModalUI();
-  modalConfirmEl.dataset.id = id;
+  modalConfirmEl.dataset.itemId = id;
   modalConfirmEl.show();
 };
 
@@ -29,13 +29,13 @@ const closeModalForm = () => {
   if (salaryInput) salaryInput.value = '';
   if (ctgInput) ctgInput.value = '';
 
-  modalFormEl.dataset.id = '';
+  modalFormEl.dataset.itemId = '';
   modalFormEl.close();
 };
 
 const closeModalConfirm = () => {
   const { modalConfirmEl } = getModalUI();
-  modalConfirmEl.dataset.id = '';
+  modalConfirmEl.dataset.itemId = '';
   modalConfirmEl.close();
 };
 

@@ -31,7 +31,7 @@ window.addEventListener('load', () => {
 appEl.addEventListener('click', (e) => {
   // Switch between page
   const link = e.target.closest('#sidebar .link');
-  if (link) switchPage(e, link);
+  if (link) switchPage(e);
 
   // Toggle theme
   const btnTheme = e.target.closest('#btn-theme');
@@ -43,11 +43,11 @@ appEl.addEventListener('click', (e) => {
 
   // Delete data flow
   const btnDelete = e.target.closest('.btn-delete');
-  if (btnDelete) deleteFlow(btnDelete);
+  if (btnDelete) deleteFlow(e);
 
   // Edit data flow
   const btnEdit = e.target.closest('.btn-edit');
-  if (btnEdit) editFlow(btnEdit);
+  if (btnEdit) editFlow(e);
 
   // Confirmation delete data
   const btnAcceptDelete = e.target.closest('#btn-accept');
