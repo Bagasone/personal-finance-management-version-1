@@ -26,6 +26,7 @@ import {
   findEditedExpenseItemById,
   updateExpense,
 } from '../logic/expense';
+import { resetFormUI, resetModalFormUI } from '../ui/resetInputUI';
 
 const addDataFlow = (e) => {
   e.preventDefault();
@@ -40,12 +41,14 @@ const addDataFlow = (e) => {
   const input = getFormValueByEntity(entityName);
 
   if (flow) {
-    const result = flow(input);
-    handleInputUI(result);
+    const { validation, ok } = flow(input);
 
-    if (result.isStoreSuccess) {
+    if (ok) {
+      resetFormUI();
       renderPage(location.pathname);
       handlePopUpUI(`${entityName} berhasil ditambahkan!`, 'greenMessage');
+    } else {
+      handleInputUI(validation);
     }
   }
 };
@@ -75,10 +78,10 @@ const editFlow = (e) => {
 
   const flow = flowEditData[entityName];
   if (flow) {
-    const result = flow(id);
+    const { ok, data } = flow(id);
 
-    if (result) {
-      openModalForm(result);
+    if (ok) {
+      openModalForm(data);
     } else {
       handlePopUpUI(`${entityName} tidak ditemukan!`, 'redMessage');
     }
@@ -99,13 +102,14 @@ const updateFlow = (e) => {
   const input = getModalFormValueByEntity(entityName);
 
   if (flow) {
-    const result = flow(id, input);
-    handleModalInputUI(result);
+    const { validation, ok } = flow(id, input);
 
-    if (result.isStoreSuccess) {
+    if (ok) {
+      closeModalForm(); // Having reset modal form UI
       renderPage(location.pathname);
       handlePopUpUI(`${entityName} berhasil diperbarui!`, 'greenMessage');
-      closeModalForm();
+    } else {
+      handleModalInputUI(validation);
     }
   }
 };
@@ -119,9 +123,9 @@ const confirmDeleteFlow = () => {
 
   const flow = flowConfirmDelete[entityName];
   if (flow) {
-    const result = flow(id);
+    const { ok } = flow(id);
 
-    if (result) {
+    if (ok) {
       closeModalConfirm();
       renderPage(location.pathname);
       handlePopUpUI(`${entityName} berhasil dihapus!`, 'redMessage');

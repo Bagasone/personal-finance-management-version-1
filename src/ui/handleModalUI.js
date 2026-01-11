@@ -1,4 +1,5 @@
 import { getModalUI, getModalFormInput } from './domVar';
+import { resetModalFormUI } from './resetInputUI';
 
 const openModalForm = ({ id, ...item }) => {
   const { modalFormEl } = getModalUI();
@@ -13,6 +14,7 @@ const openModalForm = ({ id, ...item }) => {
 
 const openModalConfirm = (id) => {
   const { modalConfirmEl } = getModalUI();
+
   modalConfirmEl.dataset.itemId = id;
   modalConfirmEl.show();
 };
@@ -20,14 +22,7 @@ const openModalConfirm = (id) => {
 const closeModalForm = () => {
   const { modalFormEl } = getModalUI();
 
-  const { descInput, ctgInput, priceInput, qtyInput, salaryInput } =
-    getModalFormInput();
-
-  if (descInput) descInput.value = '';
-  if (priceInput) priceInput.value = '';
-  if (qtyInput) qtyInput.value = '';
-  if (salaryInput) salaryInput.value = '';
-  if (ctgInput) ctgInput.value = '';
+  resetModalFormUI();
 
   modalFormEl.dataset.itemId = '';
   modalFormEl.close();

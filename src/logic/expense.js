@@ -33,16 +33,16 @@ const addExpense = ({ desc, ctg, price, qty }) => {
     updatedAt: now,
   };
 
-  const validationResult = expenseValidation({ desc, ctg, price, qty });
+  const validation = expenseValidation({ desc, ctg, price, qty });
 
-  for (let key in validationResult) {
-    if (!validationResult[key].valid) return validationResult;
+  const isValid = Object.values(validation).every((v) => v.valid);
+
+  if (!isValid) {
+    return { ok: false, validation };
   }
 
-  const isStoreSuccess = postExpense(newExpense);
-  if (isStoreSuccess) {
-    return { ...validationResult, isStoreSuccess };
-  }
+  const ok = postExpense(newExpense);
+  return { ok };
 };
 
 const findEditedExpenseItemById = (id) => {
@@ -51,10 +51,21 @@ const findEditedExpenseItemById = (id) => {
     (item) => item.id === id
   );
 
-  return item;
+  if (!item) {
+    return { ok: false };
+  }
+
+  return { ok: true, data: item };
 };
 
-const deleteExpenseById = (id) => deleteExpense(id);
+const deleteExpenseById = (id) => {
+  if (!id) {
+    return { ok: false };
+  }
+
+  const ok = deleteExpense(id);
+  return { ok };
+};
 
 const updateExpense = (id, { desc, price, qty, ctg }) => {
   const now = Date.now();
@@ -67,16 +78,18 @@ const updateExpense = (id, { desc, price, qty, ctg }) => {
     updatedAt: now,
   };
 
-  const validationResult = expenseValidation({ desc, ctg, price, qty });
+  const validation = expenseValidation({ desc, ctg, price, qty });
 
-  for (let key in validationResult) {
-    if (!validationResult[key].valid) return validationResult;
+  const isValid = Object.values(validation).every(
+    (valdResult) => valdResult.valid
+  );
+
+  if (!isValid) {
+    return { ok: false, validation };
   }
 
-  const isStoreSuccess = putExpense(id, newExpense);
-  if (isStoreSuccess) {
-    return { ...validationResult, isStoreSuccess };
-  }
+  const ok = putExpense(id, newExpense);
+  return { ok };
 };
 
 export {
