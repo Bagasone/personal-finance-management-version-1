@@ -71,7 +71,7 @@ const incomeForm = [
     label: 'Description',
     type: 'text',
     id: 'desc',
-    placeholder: 'Coffee',
+    placeholder: 'Work',
   },
   {
     label: 'Category',

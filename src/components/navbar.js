@@ -7,7 +7,7 @@ import { user } from '../storage/userStorage';
 const navbar = () => {
   return `
     <nav class="
-        bg-gray-100 fixed left-0 top-0 right-0 
+        bg-gray-100 fixed z-1 left-0 top-0 right-0 
         py-5 px-6 sm:px-18 md:px-20 lg:px-22 xl:px-24
         flex justify-between
         transition-all duration-300 ease-in-out

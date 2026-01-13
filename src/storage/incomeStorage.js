@@ -1,27 +1,32 @@
-const dailyIncome = [
-  {
-    id: crypto.randomUUID(),
-    desc: 'Software Engineer',
-    ctg: 'fulltime',
-    salary: 20000000,
-    date: Date.now(),
-  },
-  {
-    id: crypto.randomUUID(),
-    desc: 'Create Profile Company Web',
-    ctg: 'freelance',
-    salary: 500000,
-    date: Date.now(),
-  },
-  {
-    id: crypto.randomUUID(),
-    desc: 'Personal Finance Management',
-    ctg: 'profit',
-    salary: 5000000,
-    date: Date.now(),
-  },
-];
+let dailyIncome = JSON.parse(localStorage.getItem('dailyIncome')) || [];
+
+const saveDailyIncome = (newDailyIncome) => {
+  if (newDailyIncome) {
+    dailyIncome = newDailyIncome;
+    localStorage.setItem('dailyIncome', JSON.stringify(newDailyIncome));
+    return true;
+  }
+
+  return false;
+};
 
 const getDailyIncome = () => dailyIncome;
 
-export { getDailyIncome };
+const postIncome = (newIncome) => {
+  const newDailyIncome = [...dailyIncome, newIncome];
+  return saveDailyIncome(newDailyIncome);
+};
+
+const deleteIncome = (id) => {
+  const newDailyIncome = dailyIncome.filter((item) => item.id !== id);
+  return saveDailyIncome(newDailyIncome);
+};
+
+const putIncome = (id, { desc, salary, ctg, updatedAt }) => {
+  const newDailyIncome = dailyIncome.map((item) =>
+    item.id === id ? { ...item, desc, salary, ctg, updatedAt } : item
+  );
+  return saveDailyIncome(newDailyIncome);
+};
+
+export { getDailyIncome, postIncome, deleteIncome, putIncome };

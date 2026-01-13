@@ -6,7 +6,7 @@ import {
   closeModalConfirm,
   closeModalForm,
 } from '../ui/handleModalUI';
-
+import { resetFormUI } from '../ui/resetInputUI';
 import { handleInputUI, handleModalInputUI } from '../ui/handleInputUI';
 
 import {
@@ -20,13 +20,20 @@ import {
   getItemIdFromModalForm,
 } from '../ui/getDataAttr';
 import { getEntityNameFromRoute } from '../ui/getRoute';
+
 import {
   addExpense,
   deleteExpenseById,
   findEditedExpenseItemById,
   updateExpense,
 } from '../logic/expense';
-import { resetFormUI, resetModalFormUI } from '../ui/resetInputUI';
+
+import {
+  addIncome,
+  deleteIncomeById,
+  findEditedIncomeItemById,
+  updateIncome,
+} from '../logic/income';
 
 const addDataFlow = (e) => {
   e.preventDefault();
@@ -35,6 +42,7 @@ const addDataFlow = (e) => {
 
   const flowAddData = {
     expense: addExpense,
+    income: addIncome,
   };
 
   const flow = flowAddData[entityName];
@@ -64,12 +72,35 @@ const deleteFlow = (e) => {
   openModalConfirm(id);
 };
 
+const confirmDeleteFlow = () => {
+  const flowConfirmDelete = {
+    expense: deleteExpenseById,
+    income: deleteIncomeById,
+  };
+  const id = getItemIdFromModalConfirm();
+  const entityName = getEntityNameFromRoute(location.pathname);
+
+  const flow = flowConfirmDelete[entityName];
+  if (flow) {
+    const { ok } = flow(id);
+
+    if (ok) {
+      closeModalConfirm();
+      renderPage(location.pathname);
+      handlePopUpUI(`${entityName} berhasil dihapus!`, 'redMessage');
+    } else {
+      handlePopUpUI(`${entityName} gagal dihapus!`, 'redMessage');
+    }
+  }
+};
+
 const editFlow = (e) => {
   const id = getItemIdFromEvent(e);
   const entityName = getEntityNameFromRoute(location.pathname);
 
   const flowEditData = {
     expense: findEditedExpenseItemById,
+    income: findEditedIncomeItemById,
   };
 
   if (!id) {
@@ -96,6 +127,7 @@ const updateFlow = (e) => {
 
   const flowConfirmUpdate = {
     expense: updateExpense,
+    income: updateIncome,
   };
 
   const flow = flowConfirmUpdate[entityName];
@@ -110,27 +142,6 @@ const updateFlow = (e) => {
       handlePopUpUI(`${entityName} berhasil diperbarui!`, 'greenMessage');
     } else {
       handleModalInputUI(validation);
-    }
-  }
-};
-
-const confirmDeleteFlow = () => {
-  const flowConfirmDelete = {
-    expense: deleteExpenseById,
-  };
-  const id = getItemIdFromModalConfirm();
-  const entityName = getEntityNameFromRoute(location.pathname);
-
-  const flow = flowConfirmDelete[entityName];
-  if (flow) {
-    const { ok } = flow(id);
-
-    if (ok) {
-      closeModalConfirm();
-      renderPage(location.pathname);
-      handlePopUpUI(`${entityName} berhasil dihapus!`, 'redMessage');
-    } else {
-      handlePopUpUI(`${entityName} gagal dihapus!`, 'redMessage');
     }
   }
 };

@@ -1,13 +1,13 @@
-import { status, form, lists } from '../components';
-import {
-  getDailyExpense,
-  getTotalDailyExpense,
-} from '../storage/expenseStorage.js';
+import { status, form, lists, modal } from '../components';
+import { getDailyExpense } from '../storage/expenseStorage.js';
 import { btnAdd, expenseForm, expenseStatus } from '../constants';
 
 const expensePage = () => {
   const dailyExpense = getDailyExpense();
-  const totalDailyExpense = getTotalDailyExpense();
+  const totalDailyExpense = dailyExpense.reduce(
+    (acc, curr) => acc + curr.qty * curr.price,
+    0
+  );
 
   return `
     <section class="col-span-12">
@@ -21,6 +21,8 @@ const expensePage = () => {
       <h2 class="sub-title">List Expenses</h2>
       ${lists(dailyExpense, 'expense')}
     </section>
+    ${modal('modalForm', expenseForm)}
+    ${modal('modalConfirm')}
 `;
 };
 

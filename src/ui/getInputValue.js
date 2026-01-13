@@ -1,7 +1,8 @@
 import { getFormInput, getModalFormInput } from './domVar';
 
 const getFormValueByEntity = (entity) => {
-  const { descInput, priceInput, qtyInput, ctgInput } = getFormInput();
+  const { descInput, priceInput, qtyInput, salaryInput, ctgInput } =
+    getFormInput();
 
   if (entity === 'expense')
     return {
@@ -20,7 +21,8 @@ const getFormValueByEntity = (entity) => {
 };
 
 const getModalFormValueByEntity = (entity) => {
-  const { descInput, priceInput, qtyInput, ctgInput } = getModalFormInput();
+  const { descInput, priceInput, qtyInput, salaryInput, ctgInput } =
+    getModalFormInput();
 
   if (entity === 'expense')
     return {

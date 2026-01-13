@@ -1,4 +1,4 @@
-import { getModalUI, getModalFormInput } from './domVar';
+import { getModalUI } from './domVar';
 import { resetModalFormUI } from './resetInputUI';
 
 const openModalForm = ({ id, ...item }) => {

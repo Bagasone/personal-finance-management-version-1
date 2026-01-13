@@ -12,28 +12,28 @@ import {
   ctgValidation,
 } from './validation';
 
-const expenseValidation = ({ desc, ctg, price, qty }) => ({
+const expenseValidation = (desc, price, qty, ctg) => ({
   isValidDesc: descValidation(desc),
   isValidPrice: priceValidation(price),
   isValidQty: qtyValidation(qty),
   isValidCtg: ctgValidation(ctg),
 });
 
-const addExpense = ({ desc, ctg, price, qty }) => {
+const addExpense = ({ desc, price, qty, ctg }) => {
   const now = Date.now();
 
   const newExpense = {
     id: crypto.randomUUID(),
     desc: String(desc),
-    ctg: String(ctg),
     price: Number(price),
     qty: Number(qty),
+    ctg: String(ctg),
     date: now,
     createdAt: now,
     updatedAt: now,
   };
 
-  const validation = expenseValidation({ desc, ctg, price, qty });
+  const validation = expenseValidation(desc, price, qty, ctg);
 
   const isValid = Object.values(validation).every((v) => v.valid);
 
@@ -42,6 +42,15 @@ const addExpense = ({ desc, ctg, price, qty }) => {
   }
 
   const ok = postExpense(newExpense);
+  return { ok, validation };
+};
+
+const deleteExpenseById = (id) => {
+  if (!id) {
+    return { ok: false };
+  }
+
+  const ok = deleteExpense(id);
   return { ok };
 };
 
@@ -58,15 +67,6 @@ const findEditedExpenseItemById = (id) => {
   return { ok: true, data: item };
 };
 
-const deleteExpenseById = (id) => {
-  if (!id) {
-    return { ok: false };
-  }
-
-  const ok = deleteExpense(id);
-  return { ok };
-};
-
 const updateExpense = (id, { desc, price, qty, ctg }) => {
   const now = Date.now();
 
@@ -78,7 +78,7 @@ const updateExpense = (id, { desc, price, qty, ctg }) => {
     updatedAt: now,
   };
 
-  const validation = expenseValidation({ desc, ctg, price, qty });
+  const validation = expenseValidation(desc, price, qty, ctg);
 
   const isValid = Object.values(validation).every(
     (valdResult) => valdResult.valid

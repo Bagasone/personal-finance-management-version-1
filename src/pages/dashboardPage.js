@@ -1,16 +1,20 @@
 import { balanceStatus, incomeStatus, expenseStatus } from '../constants';
-import {
-  getDailyExpense,
-  getTotalDailyExpense,
-} from '../storage/expenseStorage.js';
+import { getDailyExpense } from '../storage/expenseStorage.js';
 import { getDailyIncome } from '../storage/incomeStorage.js';
 import { status, lists } from '../components';
 
 const dashboardPage = () => {
   const dailyExpense = getDailyExpense();
-  const totalDailyExpense = getTotalDailyExpense();
+  const totalDailyExpense = dailyExpense.reduce(
+    (acc, curr) => acc + curr.qty * curr.price,
+    0
+  );
 
   const dailyIncome = getDailyIncome();
+  const totalDailyIncome = dailyIncome.reduce(
+    (acc, curr) => acc + curr.salary,
+    0
+  );
 
   return `
       <section class="col-span-12 lg:col-span-6">
@@ -20,7 +24,7 @@ const dashboardPage = () => {
         ${status({ ...expenseStatus, iconClass: null }, totalDailyExpense)}
       </section>
       <section class="col-span-6 lg:col-span-3">
-        ${status({ ...incomeStatus, iconClass: null }, 'Rp 20.500.000')}
+        ${status({ ...incomeStatus, iconClass: null }, totalDailyIncome)}
       </section>
       <section class="col-span-12 flex flex-col gap-3">
         <h2 class="sub-title">Most Highest Expenses:</h2>
