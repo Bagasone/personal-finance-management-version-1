@@ -154,6 +154,21 @@ const incomeStatus = {
   placeholder: 'No Income',
 };
 
+// Internationalization
+const idCurrencyStandard = {
+  locale: 'id-ID',
+  currency: 'IDR',
+  notation: 'standard',
+  displaySymbol: 'symbol',
+};
+
+const idCurrencyCompact = {
+  locale: 'id-ID',
+  currency: 'IDR',
+  notation: 'compact',
+  displaySymbol: 'narrowSymbol',
+};
+
 export {
   links,
   icons,
@@ -169,4 +184,6 @@ export {
   expenseStatus,
   incomeStatus,
   balanceStatus,
+  idCurrencyStandard,
+  idCurrencyCompact,
 };

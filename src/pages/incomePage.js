@@ -1,5 +1,11 @@
 import { status, form, lists, modal } from '../components';
-import { btnAdd, incomeForm, incomeStatus } from '../constants';
+import {
+  btnAdd,
+  idCurrencyStandard,
+  incomeForm,
+  incomeStatus,
+} from '../constants';
+import { currencyFormatter } from '../helper/formatter';
 import { getDailyIncome } from '../storage/incomeStorage';
 
 const incomePage = () => {
@@ -9,9 +15,14 @@ const incomePage = () => {
     0
   );
 
+  const formattedDailyIncome = currencyFormatter(
+    idCurrencyStandard,
+    totalDailyIncome
+  );
+
   return `
     <section class="col-span-12">
-        ${status(incomeStatus, totalDailyIncome, 'md')}
+        ${status(incomeStatus, formattedDailyIncome, 'md')}
     </section>
     <section class="col-span-12 flex flex-col gap-2.5 2xl:gap-3">
         <h2 class="sub-title">Add Income</h2>

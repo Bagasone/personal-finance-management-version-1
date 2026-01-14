@@ -2,7 +2,8 @@
 import { icon, text } from '../components';
 
 // Constants
-import { icons } from '../constants/index.js';
+import { icons, idCurrencyStandard } from '../constants/index.js';
+import { currencyFormatter } from '../helper/formatter.js';
 
 const lists = (data, type) => {
   return `
@@ -72,10 +73,10 @@ const expenseList = (price, qty) =>
     lg:font-semibold 
     md:max-w-[15ch] lg:max-w-[20ch] xl:max-w-[25ch]
     md:text-base lg:text-lg xl:text-xl 2xl:text-2xl">
-    Rp ${price * qty}
+    ${currencyFormatter(idCurrencyStandard, price * qty)}
   </h3>
   <p class="ml-2 text-[.6rem] lg:text-[.8rem] 2xl:text-[1rem]">
-    ${qty} x ${price}
+  ${currencyFormatter(idCurrencyStandard, price)} x ${qty}
   </p>
 `;
 
@@ -86,7 +87,7 @@ const incomeList = (salary) =>
   lg:font-semibold 
   md:max-w-[15ch] lg:max-w-[20ch] xl:max-w-[25ch]
   md:text-base lg:text-lg xl:text-xl 2xl:text-2xl">
-  Rp ${salary}
+  ${currencyFormatter(idCurrencyStandard, salary)}
 </h3>   
 `;
 export default lists;
