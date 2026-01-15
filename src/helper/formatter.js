@@ -7,13 +7,13 @@ const getFractionDigits = (notation) =>
   notation === 'compact' ? 0 : undefined;
 
 const currencyFormatter = (
-  { locale, currency, notation, currencyDisplay },
+  { locales, currency, notation, currencyDisplay },
   number
 ) => {
   const finalNotation = getNotation(notation, number);
   const fractionDigits = getFractionDigits(notation);
 
-  return new Intl.NumberFormat(locale, {
+  return new Intl.NumberFormat(locales, {
     style: 'currency',
     currency,
     currencyDisplay,
@@ -22,4 +22,15 @@ const currencyFormatter = (
   }).format(number);
 };
 
-export { currencyFormatter };
+const dateTimeFormatter = ({ locales, timeZone }, date) =>
+  new Intl.DateTimeFormat(locales, {
+    timeZone,
+    year: '2-digit',
+    month: 'short',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    // calendar: 'hijriah',
+  }).format(date);
+
+export { currencyFormatter, dateTimeFormatter };

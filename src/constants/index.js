@@ -156,17 +156,22 @@ const incomeStatus = {
 
 // Internationalization
 const idCurrencyStandard = {
-  locale: 'id-ID',
+  locales: 'id-ID',
   currency: 'IDR',
   notation: 'standard',
   displaySymbol: 'symbol',
 };
 
 const idCurrencyCompact = {
-  locale: 'id-ID',
+  locales: 'id-ID',
   currency: 'IDR',
   notation: 'compact',
   displaySymbol: 'narrowSymbol',
+};
+
+const idAsiaJakarta = {
+  locales: 'id-ID',
+  timeZone: 'Asia/Jakarta',
 };
 
 export {
@@ -186,4 +191,5 @@ export {
   balanceStatus,
   idCurrencyStandard,
   idCurrencyCompact,
+  idAsiaJakarta,
 };

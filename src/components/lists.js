@@ -3,7 +3,7 @@ import { icon, text } from '../components';
 
 // Constants
 import { icons, idCurrencyStandard } from '../constants/index.js';
-import { currencyFormatter } from '../helper/formatter.js';
+import { currencyFormatter, dateTimeFormatter } from '../helper/formatter.js';
 
 const lists = (data, type) => {
   return `
@@ -43,7 +43,10 @@ const list = ({ desc, ctg, date, salary, price, qty, id }) => {
           md:text-lg lg:text-xl 2xl:text-2xl">
           ${desc}
         </h3>
-        <p class="ml-2 text-[.6rem] lg:text-[.8rem]">${date}</p>
+        <p class="ml-2 text-[.6rem] lg:text-[.8rem]">${dateTimeFormatter(
+          idCurrencyStandard,
+          date
+        )}</p>
       </div>
       <div class="
         col-span-5 text-ellipsis overflow-hidden text-nowrap

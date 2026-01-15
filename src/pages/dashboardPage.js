@@ -21,7 +21,7 @@ const dashboardPage = () => {
     totalDailyExpense
   );
 
-  const dailyIncome = getDailyIncome();
+const dailyIncome = getDailyIncome();
   const totalDailyIncome = dailyIncome.reduce(
     (acc, curr) => acc + curr.salary,
     0
