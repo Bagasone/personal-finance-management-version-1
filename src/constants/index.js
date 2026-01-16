@@ -169,6 +169,11 @@ const idCurrencyCompact = {
   displaySymbol: 'narrowSymbol',
 };
 
+const idCurrencyInput = {
+  locales: 'id-ID',
+  currency: 'IDR',
+};
+
 const idAsiaJakarta = {
   locales: 'id-ID',
   timeZone: 'Asia/Jakarta',
@@ -191,5 +196,6 @@ export {
   balanceStatus,
   idCurrencyStandard,
   idCurrencyCompact,
+  idCurrencyInput,
   idAsiaJakarta,
 };

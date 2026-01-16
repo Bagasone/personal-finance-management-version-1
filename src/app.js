@@ -12,6 +12,7 @@ import {
   confirmDeleteFlow,
   deleteFlow,
   editFlow,
+  inputFormWithCurrencyFormat,
   updateFlow,
 } from './flow/index.js';
 import switchPage from './ui/switchPage.js';
@@ -64,6 +65,13 @@ appEl.addEventListener('click', (e) => {
   // Close modal form
   const btnCloseModalForm = e.target.closest('#btn-close');
   if (btnCloseModalForm) closeModalForm();
+});
+
+const contentEl = document.querySelector('#content');
+
+contentEl.addEventListener('input', (e) => {
+  const form = e.target.closest('input');
+  if (form) inputFormWithCurrencyFormat(e);
 });
 
 // Save the history of the page

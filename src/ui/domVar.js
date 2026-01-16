@@ -6,6 +6,15 @@ const getFormInput = () => ({
   qtyInput: document.querySelector('#qty'),
 });
 
+const getModalFormInput = () => ({
+  descInput: document.querySelector('dialog #desc'),
+  ctgInput: document.querySelector('dialog #ctg'),
+  priceInput: document.querySelector('dialog #price'),
+  qtyInput: document.querySelector('dialog #qty'),
+  salaryInput: document.querySelector('dialog #salary'),
+  displayInput: document.querySelector('dialog #display'),
+});
+
 const getPopUpUI = () => ({
   popUpEl: document.querySelector('#popUp'),
 });
@@ -27,17 +36,9 @@ const getIconThemeUI = () => ({
   iconThemeEl: document.querySelector('#btn-theme i'),
 });
 
-const getModalFormInput = () => {
-  const { modalFormEl } = getModalUI();
-
-  return {
-    descInput: modalFormEl.querySelector('#desc'),
-    ctgInput: modalFormEl.querySelector('#ctg'),
-    priceInput: modalFormEl.querySelector('#price'),
-    qtyInput: modalFormEl.querySelector('#qty'),
-    salaryInput: modalFormEl.querySelector('#salary'),
-  };
-};
+const getDisplaySpan = () => ({
+  displaySpan: document.querySelector('#display'),
+});
 
 export {
   getFormInput,
@@ -47,4 +48,5 @@ export {
   getSectionUI,
   getLinksUI,
   getModalFormInput,
+  getDisplaySpan,
 };

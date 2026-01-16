@@ -33,4 +33,12 @@ const dateTimeFormatter = ({ locales, timeZone }, date) =>
     // calendar: 'hijriah',
   }).format(date);
 
-export { currencyFormatter, dateTimeFormatter };
+const currencyFormatterInput = ({ locales, currency }, number) =>
+  new Intl.NumberFormat(locales, {
+    style: 'currency',
+    currency,
+    currencySign: 'accounting',
+    minimumFractionDigits: 0,
+  }).format(number);
+
+export { currencyFormatter, dateTimeFormatter, currencyFormatterInput };

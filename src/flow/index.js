@@ -5,6 +5,7 @@ import {
   openModalConfirm,
   closeModalConfirm,
   closeModalForm,
+  handleInputDisplay,
 } from '../ui/handleModalUI';
 import { resetFormUI } from '../ui/resetInputUI';
 import { handleInputUI, handleModalInputUI } from '../ui/handleInputUI';
@@ -47,6 +48,7 @@ const addDataFlow = (e) => {
 
   const flow = flowAddData[entityName];
   const input = getFormValueByEntity(entityName);
+  console.log(input);
 
   if (flow) {
     const { validation, ok } = flow(input);
@@ -56,6 +58,7 @@ const addDataFlow = (e) => {
       renderPage(location.pathname);
       handlePopUpUI(`${entityName} berhasil ditambahkan!`, 'greenMessage');
     } else {
+      console.log(validation);
       handleInputUI(validation);
     }
   }
@@ -146,4 +149,22 @@ const updateFlow = (e) => {
   }
 };
 
-export { addDataFlow, deleteFlow, editFlow, confirmDeleteFlow, updateFlow };
+const inputFormWithCurrencyFormat = (e) => {
+  const entityName = getEntityNameFromRoute(location.pathname);
+
+  const inputId = {
+    expense: '#price',
+    income: '#salary',
+  };
+
+  handleInputDisplay(e, inputId, entityName);
+};
+
+export {
+  addDataFlow,
+  deleteFlow,
+  editFlow,
+  confirmDeleteFlow,
+  updateFlow,
+  inputFormWithCurrencyFormat,
+};
