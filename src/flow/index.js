@@ -5,10 +5,14 @@ import {
   openModalConfirm,
   closeModalConfirm,
   closeModalForm,
-  handleInputDisplay,
+  handleInputModalDisplay,
 } from '../ui/handleModalUI';
 import { resetFormUI } from '../ui/resetInputUI';
-import { handleInputUI, handleModalInputUI } from '../ui/handleInputUI';
+import {
+  handleInputUI,
+  handleModalInputUI,
+  handleInputDisplay,
+} from '../ui/handleInputUI';
 
 import {
   getFormValueByEntity,
@@ -157,7 +161,18 @@ const inputFormWithCurrencyFormat = (e) => {
     income: '#salary',
   };
 
-  handleInputDisplay(e, inputId, entityName);
+  handleInputDisplay(e, inputId[entityName]);
+};
+
+const inputFormModalWithCurrencyFormat = (e) => {
+  const entityName = getEntityNameFromRoute(location.pathname);
+
+  const inputId = {
+    expense: '#price',
+    income: '#salary',
+  };
+
+  handleInputModalDisplay(e, inputId[entityName]);
 };
 
 export {
@@ -167,4 +182,5 @@ export {
   confirmDeleteFlow,
   updateFlow,
   inputFormWithCurrencyFormat,
+  inputFormModalWithCurrencyFormat,
 };

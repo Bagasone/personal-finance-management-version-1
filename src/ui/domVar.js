@@ -38,6 +38,7 @@ const getIconThemeUI = () => ({
 
 const getDisplaySpan = () => ({
   displaySpan: document.querySelector('#display'),
+  displaySpanModal: document.querySelector('dialog #display'),
 });
 
 export {

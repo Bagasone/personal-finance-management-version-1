@@ -9,6 +9,14 @@ const openModalForm = ({ id, ...item }) => {
 
   for (let key in item) {
     modalFormEl.querySelector(`#${key}`).value = item[key];
+
+    if (key === 'price') {
+      setCurrencyInputModal(modalFormEl.querySelector(`#${key}`));
+    }
+
+    if (key === 'salary') {
+      setCurrencyInputModal(modalFormEl.querySelector(`#${key}`));
+    }
   }
 
   modalFormEl.show();
@@ -36,23 +44,28 @@ const closeModalConfirm = () => {
   modalConfirmEl.close();
 };
 
-const handleInputDisplay = (e, inputId, entityName) => {
-  const { displaySpan } = getDisplaySpan();
+const handleInputModalDisplay = (e, input) => {
+  const { displaySpanModal } = getDisplaySpan();
 
-  if (e.target.closest(inputId[entityName])) {
-    const input = e.target.closest(inputId[entityName]);
-    const valueWithCurrency = currencyFormatterInput(
-      idCurrencyInput,
-      input.value
-    );
-
-    displaySpan.textContent = valueWithCurrency;
-    displaySpan.classList.add('bg-gray-50');
-    if (displaySpan.textContent.slice(3) === '0') {
-      displaySpan.textContent = '';
-      displaySpan.classList.remove('bg-gray-50');
+  if (e.target.closest(`dialog ${input}`)) {
+    const inputEl = e.target.closest(`dialog ${input}`);
+    setCurrencyInputModal(inputEl, displaySpanModal);
+    if (displaySpanModal.textContent.slice(3) === '0') {
+      displaySpanModal.textContent = '';
+      displaySpanModal.classList.remove('bg-gray-50');
     }
   }
+};
+
+const setCurrencyInputModal = (inputEl) => {
+  const { displaySpanModal } = getDisplaySpan();
+
+  const valueWithCurrency = currencyFormatterInput(
+    idCurrencyInput,
+    inputEl.value
+  );
+  displaySpanModal.textContent = valueWithCurrency;
+  displaySpanModal.classList.add('bg-gray-50');
 };
 
 export {
@@ -60,5 +73,5 @@ export {
   openModalForm,
   closeModalConfirm,
   closeModalForm,
-  handleInputDisplay,
+  handleInputModalDisplay,
 };

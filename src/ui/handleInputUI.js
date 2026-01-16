@@ -1,4 +1,6 @@
-import { getFormInput, getModalFormInput } from './domVar';
+import { getFormInput, getModalFormInput, getDisplaySpan } from './domVar';
+import { currencyFormatterInput } from '../helper/formatter';
+import { idCurrencyInput } from '../constants';
 
 const handleModalInputUI = ({
   isValidDesc,
@@ -82,4 +84,23 @@ const handleInputUI = ({
   }
 };
 
-export { handleInputUI, handleModalInputUI };
+const handleInputDisplay = (e, input) => {
+  const { displaySpan } = getDisplaySpan();
+
+  if (e.target.closest(input)) {
+    const inputEl = e.target.closest(input);
+    const valueWithCurrency = currencyFormatterInput(
+      idCurrencyInput,
+      inputEl.value
+    );
+
+    displaySpan.textContent = valueWithCurrency;
+    displaySpan.classList.add('bg-gray-50');
+    if (displaySpan.textContent.slice(3) === '0') {
+      displaySpan.textContent = '';
+      displaySpan.classList.remove('bg-gray-50');
+    }
+  }
+};
+
+export { handleInputUI, handleModalInputUI, handleInputDisplay };
