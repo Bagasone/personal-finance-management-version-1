@@ -3,7 +3,7 @@ import { btnAccept, btnReject, btnUpdate } from '../constants';
 
 const modal = (type, dataForm = null) => {
   return `
-  <dialog id="${type}" class="fixed z-2 top-0 left-0 right-0 bottom-0 min-w-full min-h-full bg-gray-50/25 text-gray-900 dark:text-gray-100">
+  <dialog id="${type}" class="fixed z-2 top-0 left-0 right-0 bottom-0 min-w-screen min-h-screen bg-gray-50/25 text-gray-900 dark:text-gray-100">
     ${type === 'modalConfirm' ? modalConfirm() : modalForm(dataForm)}
   </dialog>
 `;

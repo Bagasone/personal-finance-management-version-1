@@ -35,9 +35,11 @@ const dailyIncome = getDailyIncome();
   const balance = totalDailyIncome - totalDailyExpense;
   const formattedBalance = currencyFormatter(idCurrencyStandard, balance);
 
+  const tmeIndicator = totalDailyIncome <= totalDailyExpense? 'text-rose-500': totalDailyIncome/2 <= totalDailyExpense? 'text-amber-500': 'text-emerald-500'
+
   return `
       <section class="col-span-12 lg:col-span-6">
-        ${status(balanceStatus, formattedBalance, 'md')}
+        ${status(balanceStatus, formattedBalance, 'md', tmeIndicator)}
       </section>
       <section class="col-span-6 lg:col-span-3">
         ${status({ ...expenseStatus, iconClass: null }, formattedDailyExpense)}

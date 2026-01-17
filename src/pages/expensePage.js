@@ -22,7 +22,7 @@ const expensePage = () => {
 
   return `
     <section class="col-span-12">
-      ${status(expenseStatus, formattedDailyExpense, 'md')}
+      ${status(expenseStatus, formattedDailyExpense, 'md', 'text-rose-500')}
     </section>
     <section class="col-span-12 flex flex-col gap-2.5 2xl:gap-3">
       <h2 class="sub-title">Add Expense</h2>

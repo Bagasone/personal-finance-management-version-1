@@ -22,7 +22,7 @@ const incomePage = () => {
 
   return `
     <section class="col-span-12">
-        ${status(incomeStatus, formattedDailyIncome, 'md')}
+        ${status(incomeStatus, formattedDailyIncome, 'md', 'text-emerald-500')}
     </section>
     <section class="col-span-12 flex flex-col gap-2.5 2xl:gap-3">
         <h2 class="sub-title">Add Income</h2>
